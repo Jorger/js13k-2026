@@ -27,13 +27,7 @@ class Brick extends GameObject {
       top: `${this.position.y}px`,
     };
 
-    return /*html*/ `
-      <div
-        id="${this.id}"
-        class="${classNames(GAME_OBJECT_CLASS, CLASS_NAMES.BRICK)}"
-        ${inlineStyles(styles)}
-      ></div>
-    `;
+    return /*html*/ `<div id="${this.id}" class="${classNames(GAME_OBJECT_CLASS, CLASS_NAMES.BRICK)}"${inlineStyles(styles)}></div>`;
   }
 }
 

@@ -39,13 +39,7 @@ class Grid extends Component {
   }
 
   render() {
-    return /*html*/ `
-      <div
-        id="${this.id}"
-        ${inlineStyles({ width: `${TEST_SIZE * 5}px`, height: `${TEST_SIZE * 6}px` })}
-        class="${CLASS_NAMES.GRID}"
-      ></div>
-    `;
+    return /*html*/ `<div id="${this.id}" ${inlineStyles({ width: `${TEST_SIZE * 5}px`, height: `${TEST_SIZE * 6}px` })} class="${CLASS_NAMES.GRID}"></div>`;
   }
 
   children(): Component[] {

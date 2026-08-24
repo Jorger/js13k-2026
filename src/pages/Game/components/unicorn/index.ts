@@ -1,14 +1,13 @@
 import "./styles.css";
 import { classNames } from "../../../../utils/classNames";
+import { inlineStyles } from "../../../../utils/helpers";
 import {
   ETypeUnicorn,
   GAME_OBJECT_CLASS,
   SHORT_CLASS_NAMES,
 } from "../../../../utils/constants";
-import { inlineStyles } from "../../../../utils/helpers";
 import GameObject from "../base-component";
 import type { IUnicorn, TTypeUnicorn } from "../../../../interfaces";
-import unicorn from "./unicorn.png";
 
 const CLASS_NAMES = {
   UNICORN: "unicorn",
@@ -36,17 +35,7 @@ class Unicorn extends GameObject {
       top: `${this.position.y}px`,
     };
 
-    return /*html*/ `
-    <div id="${this.id}" ${inlineStyles(styles)} class="${classNames(
-      SHORT_CLASS_NAMES.DF,
-      SHORT_CLASS_NAMES.JC,
-      SHORT_CLASS_NAMES.AI,
-      GAME_OBJECT_CLASS,
-      CLASS_NAMES.UNICORN,
-      this.type.toLowerCase(),
-    )}">
-      <img src="${unicorn}"/>
-    </div>`;
+    return /*html*/ `<div id="${this.id}" ${inlineStyles(styles)} class="${classNames(SHORT_CLASS_NAMES.DF, SHORT_CLASS_NAMES.JC, SHORT_CLASS_NAMES.AI, GAME_OBJECT_CLASS, CLASS_NAMES.UNICORN, this.type.toLowerCase())}"></div>`;
   }
 }
 

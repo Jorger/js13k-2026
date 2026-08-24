@@ -42,22 +42,7 @@ class Box extends GameObject {
       top: `${this.position.y}px`,
     };
 
-    return /*html*/ `
-      <div
-        id="${this.id}"
-        class="${classNames(
-          SHORT_CLASS_NAMES.DF,
-          SHORT_CLASS_NAMES.JC,
-          SHORT_CLASS_NAMES.AI,
-          GAME_OBJECT_CLASS,
-          CLASS_NAMES.BOX,
-          this.type.toLowerCase(),
-        )}"
-        ${inlineStyles(styles)}
-      >
-        <span>${this.label}</span>
-      </div>
-    `;
+    return /*html*/ `<div id="${this.id}" class="${classNames(SHORT_CLASS_NAMES.DF, SHORT_CLASS_NAMES.JC, SHORT_CLASS_NAMES.AI, GAME_OBJECT_CLASS, CLASS_NAMES.BOX, this.type.toLowerCase())}"${inlineStyles(styles)}><span>${this.label}</span></div>`;
   }
 }
 
