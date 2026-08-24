@@ -5,6 +5,18 @@ export const CUSTOM_ROUTER_EVENT_NAME = "navigate";
 
 export const GAME_OBJECT_CLASS = "game-object";
 
+export const SHORT_CLASS_NAMES: Record<string, string> = {
+  DF: "df",
+  JC: "jc",
+  AI: "ai",
+  WI: "wi",
+  HE: "he",
+};
+
+export const BASE_PAGE_CLASS = Object.keys(SHORT_CLASS_NAMES)
+  .map((v) => SHORT_CLASS_NAMES[v])
+  .join(" ");
+
 export const LOCAL_STORAGE_KEY = {
   LEVEL: "level",
   SOUNDS: "sounds",

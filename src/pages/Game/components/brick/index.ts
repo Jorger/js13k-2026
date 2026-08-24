@@ -1,17 +1,17 @@
 import "./styles.css";
-import { inlineStyles } from "../../utils/helpers";
+import { inlineStyles } from "../../../../utils/helpers";
 import GameObject from "../base-component";
-import type { IGameObject } from "../../interfaces";
-import { classNames } from "../../utils/classNames";
-import { GAME_OBJECT_CLASS } from "../../utils/constants";
+import type { IGameObject } from "../../../../interfaces";
+import { classNames } from "../../../../utils/classNames";
+import { GAME_OBJECT_CLASS } from "../../../../utils/constants";
 
 const CLASS_NAMES = {
-  RAINBOW: "rainbow",
+  BRICK: "brick",
 };
 
-const BASE_NAME_ID = "rainbow";
+const BASE_NAME_ID = "brick";
 
-class Rainbow extends GameObject {
+class Brick extends GameObject {
   constructor({ position, size }: IGameObject) {
     super({
       position,
@@ -30,11 +30,11 @@ class Rainbow extends GameObject {
     return /*html*/ `
       <div
         id="${this.id}"
-        class="${classNames(GAME_OBJECT_CLASS, CLASS_NAMES.RAINBOW)}"
+        class="${classNames(GAME_OBJECT_CLASS, CLASS_NAMES.BRICK)}"
         ${inlineStyles(styles)}
-      >🌈</div>
+      ></div>
     `;
   }
 }
 
-export default Rainbow;
+export default Brick;

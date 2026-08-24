@@ -1,9 +1,13 @@
 import "./styles.css";
-import { inlineStyles } from "../../utils/helpers";
+import { inlineStyles } from "../../../../utils/helpers";
 import GameObject from "../base-component";
-import type { IBox, TTypeBox } from "../../interfaces";
-import { classNames } from "../../utils/classNames";
-import { GAME_OBJECT_CLASS, ETypeBox } from "../../utils/constants";
+import type { IBox, TTypeBox } from "../../../../interfaces";
+import { classNames } from "../../../../utils/classNames";
+import {
+  GAME_OBJECT_CLASS,
+  ETypeBox,
+  SHORT_CLASS_NAMES,
+} from "../../../../utils/constants";
 
 const CLASS_NAMES = {
   BOX: "box",
@@ -41,7 +45,14 @@ class Box extends GameObject {
     return /*html*/ `
       <div
         id="${this.id}"
-        class="${classNames(GAME_OBJECT_CLASS, CLASS_NAMES.BOX, this.type.toLowerCase())}"
+        class="${classNames(
+          SHORT_CLASS_NAMES.DF,
+          SHORT_CLASS_NAMES.JC,
+          SHORT_CLASS_NAMES.AI,
+          GAME_OBJECT_CLASS,
+          CLASS_NAMES.BOX,
+          this.type.toLowerCase(),
+        )}"
         ${inlineStyles(styles)}
       >
         <span>${this.label}</span>
