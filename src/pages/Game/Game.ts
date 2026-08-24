@@ -14,11 +14,7 @@ class Game extends HTMLElement {
 
     setHtml(
       this,
-      /*html*/ `
-        <div class="${BASE_PAGE_CLASS}">
-          ${this.grid}
-        </div>
-      `,
+      /*html*/ `<div class="${BASE_PAGE_CLASS}">${this.grid}</div>`,
     );
 
     this.grid.mount();
