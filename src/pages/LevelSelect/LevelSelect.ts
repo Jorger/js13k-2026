@@ -38,16 +38,16 @@ class LevelSelect extends HTMLElement {
     this.selectedLevel = getSelectedLevel();
 
     // Contenedor donde van los botones de niveles
-    const container = qs(this, ".pag-s") as HTMLElement;
+    const container = qs(".pag-s", this) as HTMLElement;
 
     // Wrapper para insertar elementos adicionales como el botón "Back"
-    const wrapper = qs(this, ".pag-c") as HTMLElement;
+    const wrapper = qs(".pag-c", this) as HTMLElement;
 
     // Inserta dinámicamente los botones de los niveles
     setHtml(container, this.renderLevels());
 
     // Agrega eventos a cada botón de nivel
-    qsa(this, ".button").forEach((button) => {
+    qsa(".button", this).forEach((button) => {
       const numLevel = +button.textContent!;
 
       if (numLevel - 1 <= this.completedLevel) {

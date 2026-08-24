@@ -1,0 +1,42 @@
+import "./styles.css";
+import { classNames } from "../../utils/classNames";
+import { ETypeUnicorn, GAME_OBJECT_CLASS } from "../../utils/constants";
+import { inlineStyles } from "../../utils/helpers";
+import GameObject from "../base-component";
+import type { IUnicorn, TTypeUnicorn } from "../../interfaces";
+import unicorn from "./unicorn.png";
+
+const CLASS_NAMES = {
+  UNICORN: "unicorn",
+};
+
+const BASE_NAME_ID = "unicorn";
+
+class Unicorn extends GameObject {
+  type: TTypeUnicorn;
+
+  constructor({ position, size, type = ETypeUnicorn.NORMAL }: IUnicorn) {
+    super({
+      position,
+      size,
+      idPrefix: BASE_NAME_ID,
+    });
+
+    this.type = type;
+  }
+
+  render() {
+    const styles = {
+      "--size": `${this.size}px`,
+      left: `${this.position.x}px`,
+      top: `${this.position.y}px`,
+    };
+
+    return /*html*/ `
+    <div id="${this.id}" ${inlineStyles(styles)} class="${classNames(GAME_OBJECT_CLASS, CLASS_NAMES.UNICORN, this.type.toLowerCase())}">
+      <img src="${unicorn}"/>
+    </div>`;
+  }
+}
+
+export default Unicorn;

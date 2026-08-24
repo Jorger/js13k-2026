@@ -1,0 +1,7 @@
+.rainbow {
+  align-items: center;
+  display: flex;
+  font-size: calc(var(--size) * 0.7);
+  justify-content: center;
+  text-shadow: 6px 7px 7px #050404a1;
+}

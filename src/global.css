@@ -20,8 +20,9 @@ html {
   -webkit-user-select: none;
   background: #503c6f;
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   height: 100%;
   position: fixed;
   user-select: none;
@@ -30,7 +31,6 @@ html {
   justify-content: center;
   align-items: center;
 }
-
 
 .df {
   display: flex;
@@ -73,8 +73,10 @@ app-router {
   text-shadow: 1px 5px 1px #00000063;
   cursor: pointer;
   /* Ponerlo en una variable de css */
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow:
+    rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .pag {
@@ -90,8 +92,17 @@ app-router {
   flex-direction: column;
 }
 
+.game-object {
+  height: var(--size);
+  position: absolute;
+  width: var(--size);
+}
+
+app-game,
 app-lobby,
 app-level-select {
+  background-color: blue;
+
   display: flex;
   width: 100%;
   height: 100%;

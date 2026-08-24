@@ -1,11 +1,11 @@
 export const $ = document.querySelector.bind(document);
 export const $$ = document.querySelectorAll.bind(document);
 
-export const qs = (target: HTMLElement, query = "") => {
+export const qs = (query = "", target: Document | HTMLElement = document) => {
   return target.querySelector(query);
 };
 
-export const qsa = (target: HTMLElement, query = "") => {
+export const qsa = (query = "", target: Document | HTMLElement = document) => {
   return target.querySelectorAll(query);
 };
 

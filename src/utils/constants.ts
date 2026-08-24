@@ -3,6 +3,8 @@ export const BASE_HEIGHT = 732;
 export const GAME_LABEL_ATTRIBUTE = "level";
 export const CUSTOM_ROUTER_EVENT_NAME = "navigate";
 
+export const GAME_OBJECT_CLASS = "game-object";
+
 export const LOCAL_STORAGE_KEY = {
   LEVEL: "level",
   SOUNDS: "sounds",
@@ -33,10 +35,15 @@ export const EVENT_TYPE = {
   CONTEXT_MENU: "contextmenu",
 };
 
-// export enum ECatColor {
-//   BLACK = "BLACK",
-//   YELLOW = "YELLOW",
-// }
+export enum ETypeUnicorn {
+  NORMAL = "NORMAL",
+  INVERT = "INVERT",
+}
+
+export enum ETypeBox {
+  DESTRUCTIVE = "DESTRUCTIVE",
+  UNDISTRUCTIVE = "UNDISTRUCTIVE",
+}
 
 // export enum ETiles {
 //   BRICK,
