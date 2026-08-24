@@ -22,8 +22,8 @@ class Lobby extends HTMLElement {
     this.innerHTML = template;
 
     // Referencias a los elementos clave dentro del template
-    const startBtn = qs(this, "button") as HTMLElement; // Botón "Play"
-    const labelLevel = qs(this, ".lob-l span") as HTMLElement;
+    const startBtn = qs("button", this) as HTMLElement; // Botón "Play"
+    const labelLevel = qs(".lob-l span", this) as HTMLElement;
     const completedLevel = getCurrentLevelFromCache();
 
     // Actualiza el label para mostrar progreso: "niveles completados / total"
@@ -56,7 +56,7 @@ class Lobby extends HTMLElement {
     // );
 
     // Wrapper para insertar elementos adicionales...
-    const wrapper = qs(this, ".pag-c") as HTMLElement;
+    const wrapper = qs(".pag-c", this) as HTMLElement;
 
     // wrapper.insertAdjacentHTML("beforeend", soundButton.render());
     wrapper.insertAdjacentHTML("beforeend", shareButton.render());
