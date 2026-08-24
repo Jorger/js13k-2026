@@ -1,0 +1,19 @@
+.tile {
+  --shadow-bottom:
+    rgba(228, 164, 150, 0.4) 0px 5px, rgba(137, 67, 51, 0.3) 0px 10px,
+    rgba(228, 164, 150, 0.2) 0px 15px, rgba(228, 164, 150, 0.1) 0px 20px,
+    rgba(228, 164, 150, 0.05) 0px 25px;
+
+  /* --shadow-left: white 5px 5px, white -5px 5px, white 0 10px; */
+
+  background-color: #039352;
+
+  background-image: repeating-conic-gradient(#49d056 0% 25%, #039352 0% 50%);
+  background-position:
+    0 0,
+    var(--size) var(--size);
+  background-size: var(--size) var(--size);
+
+  box-shadow: var(--shadow-bottom);
+  /* white 5px 5px */
+}

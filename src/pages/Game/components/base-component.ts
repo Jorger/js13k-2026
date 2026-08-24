@@ -1,10 +1,11 @@
-import { ICoordinate } from "../interfaces";
-import { guid } from "../utils/guid";
-import { qs } from "../utils/helpers";
+import { getElement } from "../../../utils/getElement";
+import { guid } from "../../../utils/guid";
+import { ICoordinate } from "../../../interfaces";
+import Component from "./component";
 
 const BASE_NAME_ID = "element";
 
-abstract class GameObject {
+abstract class GameObject extends Component {
   element: HTMLElement | null;
   size: number;
   position: ICoordinate;
@@ -19,6 +20,8 @@ abstract class GameObject {
     size: number;
     idPrefix?: string;
   }) {
+    super();
+
     this.position = position;
     this.size = size;
     this.id = `${idPrefix}-${guid()}`;
@@ -30,15 +33,9 @@ abstract class GameObject {
       return this.element;
     }
 
-    const element = qs(`#${this.id}`) as HTMLElement;
+    this.element = getElement(this.id, this.element);
 
-    if (!element) {
-      return null;
-    }
-
-    this.element = element;
-
-    return element;
+    return this.element;
   }
 
   abstract render(): string;

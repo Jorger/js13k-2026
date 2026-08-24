@@ -9,10 +9,6 @@
   --box-shadow-secondary: rgba(0, 0, 0, 0.3);
   --box-shadow-inset: rgba(0, 0, 0, 0.2);
   --box-text-shadow: #050404a1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .box.undistructive {
@@ -67,8 +63,9 @@
 
 .box span {
   color: var(--box-text);
-  font-size: calc(var(--size) * 0.4);
+  font-size: calc(var(--size) * 0.6);
   font-weight: bold;
   text-shadow: 1px 5px 3px var(--box-text-shadow);
   z-index: 2;
+  transform: translateY(-8%);
 }

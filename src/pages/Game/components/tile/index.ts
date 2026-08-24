@@ -1,9 +1,9 @@
 import "./styles.css";
-import { inlineStyles } from "../../utils/helpers";
+import { inlineStyles } from "../../../../utils/helpers";
 import GameObject from "../base-component";
-import type { IGameObject } from "../../interfaces";
-import { classNames } from "../../utils/classNames";
-import { GAME_OBJECT_CLASS } from "../../utils/constants";
+import type { IGameObject } from "../../../../interfaces";
+import { classNames } from "../../../../utils/classNames";
+import { GAME_OBJECT_CLASS } from "../../../../utils/constants";
 
 const CLASS_NAMES = {
   TILE: "tile",
