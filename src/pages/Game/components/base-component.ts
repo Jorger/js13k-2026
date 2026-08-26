@@ -1,5 +1,4 @@
 import { getElement } from "../../../utils/getElement";
-import { guid } from "../../../utils/guid";
 import { ICoordinate } from "../../../interfaces";
 import Component from "./component";
 
@@ -14,17 +13,19 @@ abstract class GameObject extends Component {
   constructor({
     position,
     size,
+    id,
     idPrefix = BASE_NAME_ID,
   }: {
     position: ICoordinate;
     size: number;
+    id: string;
     idPrefix?: string;
   }) {
     super();
 
     this.position = position;
     this.size = size;
-    this.id = `${idPrefix}-${guid()}`;
+    this.id = `${idPrefix}-${id}`;
     this.element = null;
   }
 

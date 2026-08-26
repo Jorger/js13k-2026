@@ -7,28 +7,23 @@ import {
   GAME_OBJECT_CLASS,
   ETypeBox,
   SHORT_CLASS_NAMES,
+  BASE_NAME_ID,
 } from "../../../../utils/constants";
 
 const CLASS_NAMES = {
   BOX: "box",
 };
 
-const BASE_NAME_ID = "box";
-
 class Box extends GameObject {
   label: number;
   type: TTypeBox;
 
-  constructor({
-    position,
-    size,
-    label = 1,
-    type = ETypeBox.DESTRUCTIVE,
-  }: IBox) {
+  constructor({ id, position, size, label = 1, type = ETypeBox.NORMAL }: IBox) {
     super({
+      id,
       position,
       size,
-      idPrefix: BASE_NAME_ID,
+      idPrefix: BASE_NAME_ID.BOX,
     });
 
     this.type = type;

@@ -11,7 +11,7 @@
   --box-text-shadow: #050404a1;
 }
 
-.box.undistructive {
+.box.solid {
   /* Dark theme */
   --box-bg: #3b3035;
   --box-accent: #5a3f46;

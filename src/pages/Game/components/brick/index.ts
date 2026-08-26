@@ -3,20 +3,19 @@ import { inlineStyles } from "../../../../utils/helpers";
 import GameObject from "../base-component";
 import type { IGameObject } from "../../../../interfaces";
 import { classNames } from "../../../../utils/classNames";
-import { GAME_OBJECT_CLASS } from "../../../../utils/constants";
+import { BASE_NAME_ID, GAME_OBJECT_CLASS } from "../../../../utils/constants";
 
 const CLASS_NAMES = {
   BRICK: "brick",
 };
 
-const BASE_NAME_ID = "brick";
-
 class Brick extends GameObject {
-  constructor({ position, size }: IGameObject) {
+  constructor({ id, position, size }: IGameObject) {
     super({
+      id,
       position,
       size,
-      idPrefix: BASE_NAME_ID,
+      idPrefix: BASE_NAME_ID.BRICK,
     });
   }
 
