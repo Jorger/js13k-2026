@@ -1,10 +1,11 @@
 import "./styles.css";
 import { Box, Tile, Unicorn, Rainbow, Brick } from "../index";
-import { ETypeBox, ETypeUnicorn } from "../../../../utils/constants";
+// import { ETypeBox, ETypeUnicorn } from "../../../../utils/constants";
 import { getElement } from "../../../../utils/getElement";
 import { guid } from "../../../../utils/guid";
 import { inlineStyles, setHtml } from "../../../../utils/helpers";
 import Component from "../component";
+import { ILevel, IlevelData, ILevelMatrix } from "../../../../interfaces";
 
 const CLASS_NAMES = {
   GRID: "grid",
@@ -13,19 +14,23 @@ const CLASS_NAMES = {
 const BASE_NAME_ID = "grid";
 
 // const TEST_SIZE = 55;
-const TEST_SIZE = 75;
+// const TEST_SIZE = 75;
 
 class Grid extends Component {
   id: string;
+  level: ILevel;
+  matrix: ILevelMatrix[];
   element: HTMLElement | null;
 
-  constructor(levelNumber: number) {
+  constructor(levelData: IlevelData) {
     super();
 
     this.id = `${BASE_NAME_ID}-${guid()}`;
+    this.level = levelData.level;
+    this.matrix = levelData.matrix;
     this.element = null;
 
-    console.log("LEVEL NUMBER: ", levelNumber);
+    console.log(this.matrix);
   }
 
   get el(): HTMLElement | null {
@@ -39,291 +44,17 @@ class Grid extends Component {
   }
 
   render() {
-    return /*html*/ `<div id="${this.id}" ${inlineStyles({ width: `${TEST_SIZE * 5}px`, height: `${TEST_SIZE * 6}px` })} class="${CLASS_NAMES.GRID}"></div>`;
+    return /*html*/ `<div id="${this.id}" ${inlineStyles({ width: `${this.level.config.size * this.level.config.cols}px`, height: `${this.level.config.size * this.level.config.rows}px` })} class="${CLASS_NAMES.GRID}"></div>`;
   }
 
   children(): Component[] {
-    // return [
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 2, y: 0 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 5, y: 0 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE, y: TEST_SIZE },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 2, y: TEST_SIZE },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 3, y: TEST_SIZE },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 4, y: TEST_SIZE },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 5, y: TEST_SIZE },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 3, y: TEST_SIZE * 2 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: 0, y: TEST_SIZE * 3 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 1, y: TEST_SIZE * 3 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 2, y: TEST_SIZE * 3 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 3, y: TEST_SIZE * 3 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 4, y: TEST_SIZE * 3 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 1, y: TEST_SIZE * 4 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 2, y: TEST_SIZE * 4 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 4, y: TEST_SIZE * 4 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 5, y: TEST_SIZE * 4 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 6, y: TEST_SIZE * 4 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 1, y: TEST_SIZE * 5 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 2, y: TEST_SIZE * 5 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 4, y: TEST_SIZE * 5 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 6, y: TEST_SIZE * 5 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   //inici
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 1, y: TEST_SIZE * 6 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 2, y: TEST_SIZE * 6 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 3, y: TEST_SIZE * 6 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 4, y: TEST_SIZE * 6 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 5, y: TEST_SIZE * 6 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Tile({
-    //     position: { x: TEST_SIZE * 6, y: TEST_SIZE * 6 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Rainbow({
-    //     position: { x: TEST_SIZE * 2, y: 0 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Rainbow({
-    //     position: { x: TEST_SIZE * 5, y: 0 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Brick({
-    //     position: { x: 0, y: TEST_SIZE * 3 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Brick({
-    //     position: { x: TEST_SIZE * 2, y: TEST_SIZE * 4 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Brick({
-    //     position: { x: TEST_SIZE * 5, y: TEST_SIZE * 6 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Unicorn({
-    //     position: { x: TEST_SIZE * 6, y: TEST_SIZE * 6 },
-    //     size: TEST_SIZE,
-    //   }),
-    //   new Unicorn({
-    //     position: { x: TEST_SIZE * 2, y: TEST_SIZE * 5 },
-    //     size: TEST_SIZE,
-    //     type: ETypeUnicorn.INVERT,
-    //   }),
-    // ];
-    return [
-      new Tile({
-        position: { x: TEST_SIZE * 2, y: 0 },
-        size: TEST_SIZE,
-      }),
-      new Tile({
-        position: { x: TEST_SIZE, y: TEST_SIZE },
-        size: TEST_SIZE,
-      }),
-      new Tile({
-        position: { x: TEST_SIZE * 2, y: TEST_SIZE },
-        size: TEST_SIZE,
-      }),
-      new Tile({
-        position: { x: TEST_SIZE, y: TEST_SIZE * 2 },
-        size: TEST_SIZE,
-      }),
-      new Tile({
-        position: { x: TEST_SIZE * 2, y: TEST_SIZE * 2 },
-        size: TEST_SIZE,
-      }),
-      new Tile({
-        position: { x: TEST_SIZE * 3, y: TEST_SIZE * 2 },
-        size: TEST_SIZE,
-      }),
+    const tiles = this.level.tiles.map((v) => new Tile(v));
+    const bricks = this.level.bricks.map((v) => new Brick(v));
+    const boxes = this.level.boxes.map((v) => new Box(v));
+    const rainbows = this.level.rainbows.map((v) => new Rainbow(v));
+    const uniconrs = this.level.uniconrs.map((v) => new Unicorn(v));
 
-      new Tile({
-        position: { x: 0, y: TEST_SIZE * 3 },
-        size: TEST_SIZE,
-      }),
-
-      new Tile({
-        position: { x: TEST_SIZE, y: TEST_SIZE * 3 },
-        size: TEST_SIZE,
-      }),
-      new Tile({
-        position: { x: TEST_SIZE * 2, y: TEST_SIZE * 3 },
-        size: TEST_SIZE,
-      }),
-      new Tile({
-        position: { x: TEST_SIZE * 3, y: TEST_SIZE * 3 },
-        size: TEST_SIZE,
-      }),
-
-      new Tile({
-        position: { x: TEST_SIZE, y: TEST_SIZE * 4 },
-        size: TEST_SIZE,
-      }),
-
-      new Tile({
-        position: { x: TEST_SIZE * 2, y: TEST_SIZE * 4 },
-        size: TEST_SIZE,
-      }),
-
-      new Tile({
-        position: { x: TEST_SIZE * 3, y: TEST_SIZE * 4 },
-        size: TEST_SIZE,
-      }),
-
-      new Tile({
-        position: { x: TEST_SIZE * 4, y: TEST_SIZE * 4 },
-        size: TEST_SIZE,
-      }),
-
-      new Tile({
-        position: { x: TEST_SIZE, y: TEST_SIZE * 5 },
-        size: TEST_SIZE,
-      }),
-
-      new Brick({
-        position: { x: TEST_SIZE, y: 0 },
-        size: TEST_SIZE,
-      }),
-      new Brick({
-        position: { x: 0, y: 0 },
-        size: TEST_SIZE,
-      }),
-      new Brick({
-        position: { x: 0, y: TEST_SIZE },
-        size: TEST_SIZE,
-      }),
-
-      new Brick({
-        position: { x: TEST_SIZE * 3, y: TEST_SIZE * 2 },
-        size: TEST_SIZE,
-      }),
-
-      new Brick({
-        position: { x: 0, y: TEST_SIZE * 2 },
-        size: TEST_SIZE,
-      }),
-
-      new Brick({
-        position: { x: 0, y: TEST_SIZE * 3 },
-        size: TEST_SIZE,
-      }),
-
-      new Brick({
-        position: { x: TEST_SIZE, y: TEST_SIZE * 5 },
-        size: TEST_SIZE,
-      }),
-
-      new Box({
-        position: { x: TEST_SIZE, y: TEST_SIZE * 3 },
-        size: TEST_SIZE,
-        type: ETypeBox.UNDISTRUCTIVE,
-        label: 2,
-      }),
-
-      new Box({
-        position: { x: TEST_SIZE * 3, y: TEST_SIZE * 3 },
-        size: TEST_SIZE,
-        label: 2,
-      }),
-
-      new Box({
-        position: { x: TEST_SIZE * 3, y: TEST_SIZE * 4 },
-        size: TEST_SIZE,
-        type: ETypeBox.UNDISTRUCTIVE,
-      }),
-
-      new Rainbow({
-        position: { x: TEST_SIZE * 4, y: TEST_SIZE * 4 },
-        size: TEST_SIZE,
-      }),
-
-      new Unicorn({
-        position: { x: TEST_SIZE, y: TEST_SIZE },
-        size: TEST_SIZE,
-      }),
-
-      new Unicorn({
-        position: { x: TEST_SIZE, y: TEST_SIZE * 4 },
-        size: TEST_SIZE,
-        type: ETypeUnicorn.INVERT,
-      }),
-    ];
+    return [...tiles, ...boxes, ...rainbows, ...uniconrs, ...bricks];
   }
 
   mount() {

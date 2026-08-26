@@ -1,6 +1,7 @@
 import "./styles.css";
 import { classNames } from "../../../../utils/classNames";
 import {
+  BASE_NAME_ID,
   GAME_OBJECT_CLASS,
   SHORT_CLASS_NAMES,
 } from "../../../../utils/constants";
@@ -12,14 +13,13 @@ const CLASS_NAMES = {
   RAINBOW: "rainbow",
 };
 
-const BASE_NAME_ID = "rainbow";
-
 class Rainbow extends GameObject {
-  constructor({ position, size }: IGameObject) {
+  constructor({ id, position, size }: IGameObject) {
     super({
+      id,
       position,
       size,
-      idPrefix: BASE_NAME_ID,
+      idPrefix: BASE_NAME_ID.RAINBOW,
     });
   }
 
@@ -30,7 +30,7 @@ class Rainbow extends GameObject {
       top: `${this.position.y}px`,
     };
 
-    return /*html*/ `<div id="${this.id}" class="${classNames(SHORT_CLASS_NAMES.DF,SHORT_CLASS_NAMES.JC,SHORT_CLASS_NAMES.AI,GAME_OBJECT_CLASS,CLASS_NAMES.RAINBOW)}"${inlineStyles(styles)}>🌈</div>`;
+    return /*html*/ `<div id="${this.id}" class="${classNames(SHORT_CLASS_NAMES.DF, SHORT_CLASS_NAMES.JC, SHORT_CLASS_NAMES.AI, GAME_OBJECT_CLASS, CLASS_NAMES.RAINBOW)}"${inlineStyles(styles)}>🌈</div>`;
   }
 }
 

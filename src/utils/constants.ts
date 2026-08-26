@@ -5,6 +5,14 @@ export const CUSTOM_ROUTER_EVENT_NAME = "navigate";
 
 export const GAME_OBJECT_CLASS = "game-object";
 
+export const BASE_NAME_ID = {
+  BOX: "box",
+  BRICK: "brick",
+  RAINBOW: "rainbow",
+  TILE: "tile",
+  UNICORN: "unicorn",
+};
+
 export const SHORT_CLASS_NAMES: Record<string, string> = {
   DF: "df",
   JC: "jc",
@@ -53,8 +61,8 @@ export enum ETypeUnicorn {
 }
 
 export enum ETypeBox {
-  DESTRUCTIVE = "DESTRUCTIVE",
-  UNDISTRUCTIVE = "UNDISTRUCTIVE",
+  NORMAL = "NORMAL",
+  SOLID = "SOLID",
 }
 
 // export enum ETiles {

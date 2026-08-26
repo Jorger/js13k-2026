@@ -13,7 +13,7 @@ export const $on = (
   target: HTMLElement | (Window & typeof globalThis),
   type: any,
   callback: (this: HTMLElement, ev: any) => any,
-  options?: AddEventListenerOptions
+  options?: AddEventListenerOptions,
 ) => target?.addEventListener(type, callback, options);
 
 export const setHtml = (element: HTMLElement | null, html: string) => {
@@ -48,12 +48,12 @@ export const hasClass = (target: HTMLElement, className = "") =>
 export const setCssVariable = (
   target: HTMLElement,
   variable = "",
-  value = ""
+  value = "",
 ) => target.style.setProperty(`--${variable}`, value);
 
 export const addStyle = (
   target: null | HTMLElement,
-  styles: Record<string, string>
+  styles: Record<string, string>,
 ): void => {
   if (target) {
     for (const style in styles) {
@@ -88,13 +88,21 @@ export function isValidNumber(value: number | string): boolean {
   );
 }
 
+export function getNumber(value: string): number {
+  return isValidNumber(value) ? +value : 0;
+}
+
+export function numberStringToNumber(values: string[]): number[] {
+  return values.map(getNumber);
+}
+
 export const shareLink = (data: ShareData) => {
   if ("share" in navigator) {
     navigator.share(data);
   } else {
     window.open(
       `https://x.com/share?url=${encodeURIComponent(data.url || "")}`,
-      "_blank"
+      "_blank",
     );
   }
 };
