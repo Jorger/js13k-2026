@@ -1,11 +1,16 @@
 import "./styles.css";
-import { Box, Tile, Unicorn, Rainbow, Brick } from "../index";
-// import { ETypeBox, ETypeUnicorn } from "../../../../utils/constants";
+import { Box, Brick, Rainbow, Tile, Unicorn } from "../index";
 import { getElement } from "../../../../utils/getElement";
 import { guid } from "../../../../utils/guid";
 import { inlineStyles, setHtml } from "../../../../utils/helpers";
+import {
+  ILevel,
+  ILevelCollider,
+  IlevelData,
+  ILevelFloor,
+  ILevelGameObjectsMove,
+} from "../../../../interfaces";
 import Component from "../component";
-import { ILevel, IlevelData, ILevelMatrix } from "../../../../interfaces";
 
 const CLASS_NAMES = {
   GRID: "grid",
@@ -13,24 +18,25 @@ const CLASS_NAMES = {
 
 const BASE_NAME_ID = "grid";
 
-// const TEST_SIZE = 55;
-// const TEST_SIZE = 75;
-
 class Grid extends Component {
   id: string;
   level: ILevel;
-  matrix: ILevelMatrix[];
+  floor: ILevelFloor;
+  colliders: ILevelCollider;
+  objectsMove: ILevelGameObjectsMove;
   element: HTMLElement | null;
 
   constructor(levelData: IlevelData) {
     super();
 
+    console.log(levelData);
+
     this.id = `${BASE_NAME_ID}-${guid()}`;
     this.level = levelData.level;
-    this.matrix = levelData.matrix;
+    this.floor = levelData.floor;
+    this.colliders = levelData.colliders;
+    this.objectsMove = levelData.objectsMove;
     this.element = null;
-
-    console.log(this.matrix);
   }
 
   get el(): HTMLElement | null {
@@ -65,55 +71,8 @@ class Grid extends Component {
     const children = this.children();
     setHtml(this.el, children.map((child) => child.render()).join(""));
 
-    // this.el.innerHTML = children.map((child) => child.render()).join("");
-
     children.forEach((child) => child.mount());
   }
 }
 
 export default Grid;
-
-// import { getElement } from "../../../../utils/getElement";
-// import { guid } from "../../../../utils/guid";
-// import "./styles.css";
-
-// const CLASS_NAMES = {
-//   GRID: "grid",
-// };
-
-// const BASE_NAME_ID = "grid";
-
-// class Grid {
-//   id: string;
-//   element: HTMLElement | null;
-
-//   constructor() {
-//     this.id = `${BASE_NAME_ID}-${guid()}`;
-//     this.element = null;
-//     console.log("Llega a grid");
-//   }
-
-//   get el(): HTMLElement | null {
-//     if (this.element) {
-//       return this.element;
-//     }
-
-//     this.element = getElement(this.id, this.element);
-
-//     return this.element;
-//   }
-
-//   render() {
-//     return /*html*/ `<div class="${CLASS_NAMES.GRID}"></div>`;
-//   }
-
-//   children() {
-//     console.log("RENDERIZAR LOS HIJOS");
-//   }
-
-//   toString() {
-//     return this.render();
-//   }
-// }
-
-// export default Grid;

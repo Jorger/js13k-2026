@@ -5,8 +5,13 @@ import LEVELS from "./LEVELS";
 import type {
   IBox,
   IGameObject,
+  ILevelCollider,
   IlevelData,
+  ILevelFloor,
+  ILevelGameObjectsMove,
+  ILevelItemMove,
   ILevelMatrix,
+  TKey,
 } from "../interfaces";
 import { guid } from "../utils/guid";
 
@@ -28,22 +33,43 @@ const dataBox = (data: (string | number)[][], size: number): IBox[] =>
     id: String(v[0]),
     position: { x: +v[3] * size, y: +v[2] * size },
     size,
-    label: +v[3],
-    type: +v[4] === 1 ? ETypeBox.NORMAL : ETypeBox.SOLID,
+    label: +v[4],
+    type: +v[5] === 1 ? ETypeBox.NORMAL : ETypeBox.SOLID,
   }));
 
-const getMatrix = (data: (string | number)[][]): ILevelMatrix[] => {
-  return data.map(([id, type, col, row, ...rest]) => [
-    String(id),
-    +type,
-    +row,
-    +col,
-    rest.join(","),
-  ]);
-};
+// const getMatrix = (data: (string | number)[][]): ILevelMatrix[] => {
+//   return data.map(([id, type, col, row, ...rest]) => [
+//     String(id),
+//     +type,
+//     +row,
+//     +col,
+//     rest.join(","),
+//   ]);
+// };
+
+const getFloor = (data: (string | number)[][]): ILevelFloor =>
+  data
+    .map(([, , col, row]) => ({
+      [`${row}-${col}`]: 1,
+    }))
+    .reduce((a, s) => ({ ...a, ...s }), {});
+
+const getColliders = (data: (string | number)[][]): ILevelCollider =>
+  data
+    .map(([id, type, col, row]) => ({
+      [`${row}-${col}`]: [id, type] as ILevelMatrix,
+    }))
+    .reduce((a, s) => ({ ...a, ...s }), {});
+
+const getObjectsMove = (data: (string | number)[][]): ILevelGameObjectsMove =>
+  data
+    .map(([id, type, col, row, ...rest]) => ({
+      [id]: [type, row, col, rest.join(",")] as ILevelItemMove,
+    }))
+    .reduce((a, s) => ({ ...a, ...s }), {});
 
 /**
- * Dado el nivel se convierte a un objecto para ser renderizado en el cliente...
+ * Dado el nivel se convierte a un Objeto para ser renderizado en el cliente...
  */
 const convertLevel = (level = ""): IlevelData => {
   /**
@@ -64,29 +90,15 @@ const convertLevel = (level = ""): IlevelData => {
     (_, key) => getGameObjectByType(dataLevel, key).map((v) => [guid(), ...v]),
   );
 
-  // console.log({ baseTile, baseBrick, baseBox, baseRainbow, baseUnicorn });
+  const colliders = {
+    ...getColliders(baseBrick),
+    ...getColliders(baseRainbow),
+  };
 
-  // const [brick, box, rainbow, unicorn] = Array.from({ length: 5 }, (_, key) =>
-  //   getGameObjectByType(dataLevel, key + 1),
-  // ).map(v => [guid(), ...v]);
-
-  // Array.from({ length: 4 }, (_, key) => key + 1)
-
-  // const tiles = dataGameObject(baseTile, size);
-  // const bricks = dataGameObject(baseBrick, size);
-  // const boxes = dataBox(baseBox, size);
-  // const rainbows = dataGameObject(baseRainbow, size);
-
-  // const uniconrs: IUnicorn[] = dataGameObject(baseUnicorn, size).map(
-  //   (v, i) => ({
-  //     ...v,
-  //     type: i % 2 === 0 ? ETypeUnicorn.NORMAL : ETypeUnicorn.INVERT,
-  //   }),
-  // );
-
-  // console.log("dataLevel: ", dataLevel);
-  // const tets = [...brick, ...box, ...rainbow, ...unicorn];
-  // console.log(getMatrix([...brick, ...box, ...rainbow, ...unicorn]));
+  const objectsMove = {
+    ...getObjectsMove(baseBox),
+    ...getObjectsMove(baseUnicorn),
+  };
 
   return {
     level: {
@@ -104,12 +116,9 @@ const convertLevel = (level = ""): IlevelData => {
         type: i % 2 === 0 ? ETypeUnicorn.NORMAL : ETypeUnicorn.INVERT,
       })),
     },
-    matrix: getMatrix([
-      ...baseBrick,
-      ...baseBox,
-      ...baseRainbow,
-      ...baseUnicorn,
-    ]),
+    floor: getFloor(baseTile),
+    colliders,
+    objectsMove,
   };
 };
 

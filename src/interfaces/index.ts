@@ -55,10 +55,21 @@ export interface ILevel {
   uniconrs: IUnicorn[];
 }
 
-// id, type, row, col, extra data (boxes)
-export type ILevelMatrix = [string, number, number, number, string];
+// row-col
+export type TKey = `${number}-${number}`;
+
+// id, type
+export type ILevelMatrix = [string, number];
+// type, row, col, extra
+export type ILevelItemMove = [number, number, number, string];
+
+export type ILevelFloor = Record<TKey, number>;
+export type ILevelCollider = Record<TKey, ILevelMatrix>;
+export type ILevelGameObjectsMove = Record<string, ILevelItemMove>;
 
 export interface IlevelData {
   level: ILevel;
-  matrix: ILevelMatrix[];
+  floor: ILevelFloor;
+  colliders: ILevelCollider;
+  objectsMove: ILevelGameObjectsMove;
 }

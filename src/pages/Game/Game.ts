@@ -7,13 +7,10 @@ class Game extends HTMLElement {
   private grid: Grid | null = null;
 
   connectedCallback() {
-    // console.log(getLevel(0));
     this.render();
   }
 
   private render() {
-    // console.log(getLevel(4));
-
     this.grid = new Grid(getLevel(0));
 
     setHtml(
