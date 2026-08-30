@@ -2,7 +2,6 @@ import "./styles.css";
 import { classNames } from "../../../../utils/classNames";
 import { inlineStyles } from "../../../../utils/helpers";
 import {
-  BASE_NAME_ID,
   ETypeUnicorn,
   GAME_OBJECT_CLASS,
   SHORT_CLASS_NAMES,
@@ -22,7 +21,6 @@ class Unicorn extends GameObject {
       id,
       position,
       size,
-      idPrefix: BASE_NAME_ID.UNICORN,
     });
 
     this.type = type;

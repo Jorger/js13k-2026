@@ -10,11 +10,20 @@ export const qsa = (query = "", target: Document | HTMLElement = document) => {
 };
 
 export const $on = (
-  target: HTMLElement | (Window & typeof globalThis),
+  target: HTMLElement | Document | (Window & typeof globalThis),
   type: any,
   callback: (this: HTMLElement, ev: any) => any,
   options?: AddEventListenerOptions,
 ) => target?.addEventListener(type, callback, options);
+
+export const $off = (
+  target: HTMLElement | Document | (Window & typeof globalThis),
+  type: any,
+  callback: (this: HTMLElement, ev: any) => any,
+  options?: AddEventListenerOptions,
+) => {
+  target?.removeEventListener(type, callback, options);
+};
 
 export const setHtml = (element: HTMLElement | null, html: string) => {
   if (element) {
@@ -112,3 +121,7 @@ export function isFirefoxBrowser(): boolean {
   const ua = navigator.userAgent.toLowerCase();
   return ua.includes("firefox") && !ua.includes("seamonkey");
 }
+
+export const isTouchDevice = (): boolean => {
+  return navigator.maxTouchPoints > 0;
+};

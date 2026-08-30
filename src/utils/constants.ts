@@ -1,3 +1,5 @@
+import { Direction, TInputDirection } from "../interfaces";
+
 export const BASE_WIDTH = 412;
 export const BASE_HEIGHT = 732;
 export const GAME_LABEL_ATTRIBUTE = "level";
@@ -5,13 +7,13 @@ export const CUSTOM_ROUTER_EVENT_NAME = "navigate";
 
 export const GAME_OBJECT_CLASS = "game-object";
 
-export const BASE_NAME_ID = {
-  BOX: "box",
-  BRICK: "brick",
-  RAINBOW: "rainbow",
-  TILE: "tile",
-  UNICORN: "unicorn",
-};
+// export const BASE_NAME_ID = {
+//   BOX: "box",
+//   BRICK: "brick",
+//   RAINBOW: "rainbow",
+//   TILE: "tile",
+//   UNICORN: "unicorn",
+// };
 
 export const SHORT_CLASS_NAMES: Record<string, string> = {
   DF: "df",
@@ -48,9 +50,13 @@ export const ROUTER_COMPONENT = {
 export const EVENT_TYPE = {
   CLICK: "click",
   MOUSE_DOWN: "mousedown",
+  MOUSE_MOVE: "mousemove",
   MOUSE_UP: "mouseup",
   TOUCH_START: "touchstart",
+  TOUCH_MOVE: "touchmove",
   TOUCH_END: "touchend",
+  KEY_DOWN: "keydown",
+  KEY_UP: "keyup",
   RESIZE: "resize",
   CONTEXT_MENU: "contextmenu",
 };
@@ -75,11 +81,22 @@ export enum ETypeBox {
 // }
 
 export enum EDirections {
-  UP,
-  DOWN,
-  LEFT,
-  RIGHT,
+  up = "up",
+  down = "down",
+  left = "left",
+  right = "right",
 }
+
+export const KEY_DIRECTION: Record<string, Direction> = {
+  ArrowLeft: "left",
+  ArrowUp: "up",
+  ArrowRight: "right",
+  ArrowDown: "down",
+  KeyA: "left",
+  KeyW: "up",
+  KeyD: "right",
+  KeyS: "down",
+};
 
 // export enum ESounds {
 //   CLICK,
@@ -93,9 +110,9 @@ export enum EDirections {
 //   GAME_OVER,
 // }
 
-// export const INCREASE_SWIPE = [
-//   { x: 0, y: -1 },
-//   { x: 0, y: 1 },
-//   { x: -1, y: 0 },
-//   { x: 1, y: 0 },
-// ];
+export const INPUT_DIRECTION: TInputDirection = {
+  up: { x: 0, y: -1 },
+  down: { x: 0, y: 1 },
+  left: { x: -1, y: 0 },
+  right: { x: 1, y: 0 },
+};

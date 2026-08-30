@@ -109,3 +109,12 @@ app-level-select {
   height: 100%;
   overflow: hidden;
 }
+
+.debug {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.625);
+  height: 100px;
+  pointer-events: none;
+}
