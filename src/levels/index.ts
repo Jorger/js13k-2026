@@ -49,8 +49,8 @@ const dataBox = (data: (string | number)[][], size: number): IBox[] =>
 
 const getPositionElement = (data: (string | number)[][]): IElementPosition =>
   data
-    .map(([, , col, row]) => ({
-      [`${row}-${col}`]: 1,
+    .map(([id, , col, row]) => ({
+      [`${row}-${col}`]: String(id),
     }))
     .reduce((a, s) => ({ ...a, ...s }), {});
 

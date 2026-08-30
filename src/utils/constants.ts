@@ -4,6 +4,7 @@ export const BASE_WIDTH = 412;
 export const BASE_HEIGHT = 732;
 export const GAME_LABEL_ATTRIBUTE = "level";
 export const CUSTOM_ROUTER_EVENT_NAME = "navigate";
+export const SPEED_MOVEMENT = 400;
 
 export const GAME_OBJECT_CLASS = "game-object";
 
@@ -86,6 +87,13 @@ export enum EDirections {
   left = "left",
   right = "right",
 }
+
+export const OPOSITE_DIRECTION: Record<EDirections, EDirections> = {
+  [EDirections.up]: EDirections.down,
+  [EDirections.down]: EDirections.up,
+  [EDirections.left]: EDirections.right,
+  [EDirections.right]: EDirections.left,
+};
 
 export const KEY_DIRECTION: Record<string, Direction> = {
   ArrowLeft: "left",

@@ -35,7 +35,7 @@ export function cloneDeep<T>(value: T): T {
   return JSON.parse(JSON.stringify(value as T));
 }
 
-export const addClass = (target: HTMLElement, className = "") => {
+export const addClass = (target: HTMLElement | null, className = "") => {
   if (target) {
     className.split(" ").forEach((classText) => {
       target.classList.add(classText);

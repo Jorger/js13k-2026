@@ -1,5 +1,10 @@
 .unicorn {
   align-items: end;
+  transition: all var(--sp) linear;
+}
+
+.unicorn.sink {
+  opacity: 0;
 }
 
 .unicorn.invert {
