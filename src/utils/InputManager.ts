@@ -1,6 +1,6 @@
 import { Direction, DirectionCallback } from "../interfaces";
 import { isTouchDevice } from "./helpers";
-import KeyManager from "./keyManager";
+import KeyManager from "./KeyManager";
 import SwipeManager from "./SwipeManager";
 
 class InputManager {

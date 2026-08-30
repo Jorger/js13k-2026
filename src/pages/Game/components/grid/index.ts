@@ -116,13 +116,13 @@ class Grid extends Component {
   }
 
   handleMoveElement(direction: Direction | null) {
-    if (!direction || !this.unicors || this.elementsMove.length !== 0) return;
-
-    // console.log("VALORES A BUSCAR: ", INPUT_DIRECTION[direction]);
-
     if (this.tmpDebug) {
       this.tmpDebug.textContent = direction ?? "";
     }
+
+    if (!direction || !this.unicors || this.elementsMove.length !== 0) return;
+
+    // console.log("VALORES A BUSCAR: ", INPUT_DIRECTION[direction]);
 
     const evaluationOrder = this.getOrderEvaluationUnicorns(direction);
 
@@ -133,13 +133,13 @@ class Grid extends Component {
       this.unicornCanMove(key, INPUT_DIRECTION[direction]),
     );
 
-    if (this.elementsMove.length !== 0) {
-      this.timeoutId = setTimeout(() => {
-        this.elementsMove = [];
-        console.log("AHORA EVALUA LOS SIGUIENTES Y LOS QUE CAEN...");
-        console.log("DIRECIÓN: ", this.inputManager.currentDirection);
-      }, 5000);
-    }
+    // if (this.elementsMove.length !== 0) {
+    //   this.timeoutId = setTimeout(() => {
+    //     this.elementsMove = [];
+    //     console.log("AHORA EVALUA LOS SIGUIENTES Y LOS QUE CAEN...");
+    //     console.log("DIRECIÓN: ", this.inputManager.currentDirection);
+    //   }, 5000);
+    // }
 
     // for (const key of evaluationOrder) {
     //   // const unicorn = this.unicors[key];
@@ -205,13 +205,13 @@ class Grid extends Component {
 
     // Saber si hay otro unicornio...
 
-    this.elementsMove.push({
-      id: unicornKey,
-      type: 1,
-      coordinate: newPosition,
-    });
+    // this.elementsMove.push({
+    //   id: unicornKey,
+    //   type: 1,
+    //   coordinate: newPosition,
+    // });
 
-    console.log("this.elementsMove: ", this.elementsMove);
+    // console.log("this.elementsMove: ", this.elementsMove);
 
     // return true;
 
