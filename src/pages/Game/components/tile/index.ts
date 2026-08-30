@@ -3,7 +3,7 @@ import { inlineStyles } from "../../../../utils/helpers";
 import GameObject from "../base-component";
 import type { IGameObject } from "../../../../interfaces";
 import { classNames } from "../../../../utils/classNames";
-import { BASE_NAME_ID, GAME_OBJECT_CLASS } from "../../../../utils/constants";
+import { GAME_OBJECT_CLASS } from "../../../../utils/constants";
 
 const CLASS_NAMES = {
   TILE: "tile",
@@ -15,7 +15,6 @@ class Tile extends GameObject {
       id,
       position,
       size,
-      idPrefix: BASE_NAME_ID.TILE,
     });
   }
 

@@ -1,7 +1,6 @@
 import "./styles.css";
 import { classNames } from "../../../../utils/classNames";
 import {
-  BASE_NAME_ID,
   GAME_OBJECT_CLASS,
   SHORT_CLASS_NAMES,
 } from "../../../../utils/constants";
@@ -19,7 +18,6 @@ class Rainbow extends GameObject {
       id,
       position,
       size,
-      idPrefix: BASE_NAME_ID.RAINBOW,
     });
   }
 

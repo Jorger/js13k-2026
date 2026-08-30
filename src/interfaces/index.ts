@@ -1,4 +1,4 @@
-import { ETypeBox, ETypeUnicorn } from "../utils/constants";
+import { ETypeBox, ETypeUnicorn, EDirections } from "../utils/constants";
 
 export type TTypeUnicorn = keyof typeof ETypeUnicorn;
 export type TTypeBox = keyof typeof ETypeBox;
@@ -47,6 +47,7 @@ export interface ILevelConfig {
 // }
 
 export interface ILevel {
+  label: number;
   config: ILevelConfig;
   tiles: IGameObject[];
   bricks: IGameObject[];
@@ -59,17 +60,39 @@ export interface ILevel {
 export type TKey = `${number}-${number}`;
 
 // id, type
-export type ILevelMatrix = [string, number];
+// export type ILevelMatrix = [string, number];
 // type, row, col, extra
-export type ILevelItemMove = [number, number, number, string];
+// export type ILevelItemMove = [number, number, number, string];
 
-export type ILevelFloor = Record<TKey, number>;
-export type ILevelCollider = Record<TKey, ILevelMatrix>;
-export type ILevelGameObjectsMove = Record<string, ILevelItemMove>;
+export type IElementPosition = Record<TKey, number>;
+// export type ILevelCollider = Record<TKey, ILevelMatrix>;
+// export type ILevelGameObjectsMove = Record<string, ILevelItemMove>;
+// row, col..
+export type ILevelUnicorns = Record<string, [number, number]>;
+//row, col, label, type
+export type ILevelBoxes = Record<string, [number, number, number, number]>;
 
 export interface IlevelData {
   level: ILevel;
-  floor: ILevelFloor;
-  colliders: ILevelCollider;
-  objectsMove: ILevelGameObjectsMove;
+  floor: IElementPosition;
+  walls: IElementPosition;
+  // objectsMove: ILevelGameObjectsMove;
+  rainbows: IElementPosition;
+  unicorns: ILevelUnicorns;
+  boxes: ILevelBoxes;
+}
+
+export type Direction = keyof typeof EDirections;
+
+export type DirectionCallback = (direction: Direction | null) => void;
+export type TInputDirection = Record<Direction, { x: number; y: number }>;
+
+export interface IElementGame {
+  id: string;
+  // 1 (unicornio), 2(caja) 3 (arcoiris)
+  type: number;
+}
+
+export interface IElementsMove extends IElementGame {
+  coordinate: ICoordinate;
 }

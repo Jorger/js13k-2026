@@ -14,18 +14,16 @@ abstract class GameObject extends Component {
     position,
     size,
     id,
-    idPrefix = BASE_NAME_ID,
   }: {
     position: ICoordinate;
     size: number;
     id: string;
-    idPrefix?: string;
   }) {
     super();
 
     this.position = position;
     this.size = size;
-    this.id = `${idPrefix}-${id}`;
+    this.id = `e-${id}`;
     this.element = null;
   }
 

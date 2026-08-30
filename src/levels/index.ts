@@ -5,13 +5,13 @@ import LEVELS from "./LEVELS";
 import type {
   IBox,
   IGameObject,
-  ILevelCollider,
+  // ILevelCollider,
   IlevelData,
-  ILevelFloor,
-  ILevelGameObjectsMove,
-  ILevelItemMove,
-  ILevelMatrix,
-  TKey,
+  IElementPosition,
+  // ILevelGameObjectsMove,
+  // ILevelItemMove,
+  ILevelUnicorns,
+  ILevelBoxes,
 } from "../interfaces";
 import { guid } from "../utils/guid";
 
@@ -47,31 +47,32 @@ const dataBox = (data: (string | number)[][], size: number): IBox[] =>
 //   ]);
 // };
 
-const getFloor = (data: (string | number)[][]): ILevelFloor =>
+const getPositionElement = (data: (string | number)[][]): IElementPosition =>
   data
     .map(([, , col, row]) => ({
       [`${row}-${col}`]: 1,
     }))
     .reduce((a, s) => ({ ...a, ...s }), {});
 
-const getColliders = (data: (string | number)[][]): ILevelCollider =>
-  data
-    .map(([id, type, col, row]) => ({
-      [`${row}-${col}`]: [id, type] as ILevelMatrix,
-    }))
-    .reduce((a, s) => ({ ...a, ...s }), {});
+// const getColliders = (data: (string | number)[][]): ILevelCollider =>
+//   data
+//     .map(([id, type, col, row]) => ({
+//       [`${row}-${col}`]: [id, type] as ILevelMatrix,
+//     }))
+//     .reduce((a, s) => ({ ...a, ...s }), {});
 
-const getObjectsMove = (data: (string | number)[][]): ILevelGameObjectsMove =>
-  data
-    .map(([id, type, col, row, ...rest]) => ({
-      [id]: [type, row, col, rest.join(",")] as ILevelItemMove,
-    }))
-    .reduce((a, s) => ({ ...a, ...s }), {});
+// const getObjectsMove = (data: (string | number)[][]): ILevelGameObjectsMove =>
+//   data
+//     .map(([id, type, col, row, ...rest]) => ({
+//       [id]: [type, row, col, rest.join(",")] as ILevelItemMove,
+//     }))
+//     .reduce((a, s) => ({ ...a, ...s }), {});
 
 /**
  * Dado el nivel se convierte a un Objeto para ser renderizado en el cliente...
  */
-const convertLevel = (level = ""): IlevelData => {
+const convertLevel = (index = 0): IlevelData => {
+  const level = LEVELS[index];
   /**
    * Tiles: row,col|row,col (0) sólo decir cuando no hay tile
    * Bricks: row,col|row,col (1)
@@ -90,18 +91,20 @@ const convertLevel = (level = ""): IlevelData => {
     (_, key) => getGameObjectByType(dataLevel, key).map((v) => [guid(), ...v]),
   );
 
-  const colliders = {
-    ...getColliders(baseBrick),
-    ...getColliders(baseRainbow),
-  };
+  const unicorns: ILevelUnicorns = Object.fromEntries(
+    baseUnicorn.map(([id, , col, row]) => [id, [row, col] as [number, number]]),
+  );
 
-  const objectsMove = {
-    ...getObjectsMove(baseBox),
-    ...getObjectsMove(baseUnicorn),
-  };
+  const boxes: ILevelBoxes = Object.fromEntries(
+    baseBox.map(([id, , col, row, label, type]) => [
+      id,
+      [row, col, label, type] as [number, number, number, number],
+    ]),
+  );
 
   return {
     level: {
+      label: index + 1,
       config: {
         rows,
         cols,
@@ -116,15 +119,18 @@ const convertLevel = (level = ""): IlevelData => {
         type: i % 2 === 0 ? ETypeUnicorn.NORMAL : ETypeUnicorn.INVERT,
       })),
     },
-    floor: getFloor(baseTile),
-    colliders,
-    objectsMove,
+    floor: getPositionElement(baseTile),
+    walls: getPositionElement(baseBrick),
+    // objectsMove,
+    rainbows: getPositionElement(baseRainbow),
+    unicorns,
+    boxes,
   };
 };
 
 export const getTotalLevels = () => LEVELS.length;
 
-export const getLevel = (level = 0) => convertLevel(LEVELS[level]);
+export const getLevel = (level = 0) => convertLevel(level);
 
 export const isValidLevelFromCache = (level: string) => {
   // Valida si el valor en caché es un número válido, de lo contrario usa "0"

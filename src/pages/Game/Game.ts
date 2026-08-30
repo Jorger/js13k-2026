@@ -11,11 +11,13 @@ class Game extends HTMLElement {
   }
 
   private render() {
+    this.grid?.unmount();
+
     this.grid = new Grid(getLevel(0));
 
     setHtml(
       this,
-      /*html*/ `<div class="${BASE_PAGE_CLASS}">${this.grid}</div>`,
+      /*html*/ `<div class="${BASE_PAGE_CLASS}">${this.grid}<div class="debug"></div></div>`,
     );
 
     this.grid.mount();

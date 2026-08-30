@@ -7,7 +7,6 @@ import {
   GAME_OBJECT_CLASS,
   ETypeBox,
   SHORT_CLASS_NAMES,
-  BASE_NAME_ID,
 } from "../../../../utils/constants";
 
 const CLASS_NAMES = {
@@ -23,7 +22,6 @@ class Box extends GameObject {
       id,
       position,
       size,
-      idPrefix: BASE_NAME_ID.BOX,
     });
 
     this.type = type;
