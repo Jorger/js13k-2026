@@ -25,7 +25,7 @@ class Tile extends GameObject {
       top: `${this.position.y}px`,
     };
 
-    return /*html*/ `<div id="${this.id}" class="${classNames(GAME_OBJECT_CLASS, CLASS_NAMES.TILE)}"${inlineStyles(styles)}></div>`;
+    return /*html*/ `<div id="${this.idDom}" class="${classNames(GAME_OBJECT_CLASS, CLASS_NAMES.TILE)}"${inlineStyles(styles)}></div>`;
   }
 }
 

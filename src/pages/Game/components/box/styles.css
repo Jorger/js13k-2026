@@ -9,6 +9,13 @@
   --box-shadow-secondary: rgba(0, 0, 0, 0.3);
   --box-shadow-inset: rgba(0, 0, 0, 0.2);
   --box-text-shadow: #050404a1;
+
+  transition: all var(--sp) linear;
+}
+
+/* Mejorar la animación */
+.box.explode {
+  opacity: 0;
 }
 
 .box.solid {

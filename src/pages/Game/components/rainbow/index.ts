@@ -4,12 +4,13 @@ import {
   GAME_OBJECT_CLASS,
   SHORT_CLASS_NAMES,
 } from "../../../../utils/constants";
-import { inlineStyles } from "../../../../utils/helpers";
+import { addClass, inlineStyles } from "../../../../utils/helpers";
 import GameObject from "../base-component";
 import type { IGameObject } from "../../../../interfaces";
 
 const CLASS_NAMES = {
   RAINBOW: "rainbow",
+  PICK_UP: "pick-up",
 };
 
 class Rainbow extends GameObject {
@@ -28,7 +29,11 @@ class Rainbow extends GameObject {
       top: `${this.position.y}px`,
     };
 
-    return /*html*/ `<div id="${this.id}" class="${classNames(SHORT_CLASS_NAMES.DF, SHORT_CLASS_NAMES.JC, SHORT_CLASS_NAMES.AI, GAME_OBJECT_CLASS, CLASS_NAMES.RAINBOW)}"${inlineStyles(styles)}>🌈</div>`;
+    return /*html*/ `<div id="${this.idDom}" class="${classNames(SHORT_CLASS_NAMES.DF, SHORT_CLASS_NAMES.JC, SHORT_CLASS_NAMES.AI, GAME_OBJECT_CLASS, CLASS_NAMES.RAINBOW)}"${inlineStyles(styles)}>🌈</div>`;
+  }
+
+  pickUp() {
+    addClass(this.el, CLASS_NAMES.PICK_UP);
   }
 }
 

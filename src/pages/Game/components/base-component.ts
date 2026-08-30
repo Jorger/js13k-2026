@@ -9,6 +9,7 @@ abstract class GameObject extends Component {
   size: number;
   position: ICoordinate;
   id: string;
+  idDom: string;
 
   constructor({
     position,
@@ -23,7 +24,8 @@ abstract class GameObject extends Component {
 
     this.position = position;
     this.size = size;
-    this.id = `e-${id}`;
+    this.id = id;
+    this.idDom = `e-${id}`;
     this.element = null;
   }
 
@@ -32,7 +34,7 @@ abstract class GameObject extends Component {
       return this.element;
     }
 
-    this.element = getElement(this.id, this.element);
+    this.element = getElement(this.idDom, this.element);
 
     return this.element;
   }
