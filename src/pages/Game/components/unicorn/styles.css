@@ -1,10 +1,23 @@
 .unicorn {
   align-items: end;
-  transition: all var(--sp) linear;
+  transition:
+    left var(--sp) ease-out,
+    top var(--sp) ease-out;
+  /* jump */
+  /* transition: all var(--sp); */
+  /* linear */
+  /* animation: idle 700ms ease-in-out infinite; */
+  /* animation: idle 700ms ease-in-out infinite; */
+  /* animation: idle 800ms ease-in-out infinite; */
+  /* transform-origin: center bottom; */
+}
+
+.unicorn.move {
+  animation: jump var(--sp) ease-out infinite;
 }
 
 .unicorn.sink {
-  opacity: 0;
+  animation: fall var(--sp) ease-in forwards;
 }
 
 .unicorn.invert {
@@ -19,3 +32,138 @@
   position: absolute;
   width: 90%;
 }
+
+/* Iption 2 */
+@keyframes jump {
+  /* Preparándose para saltar */
+  0% {
+    transform: translateY(0) scaleX(1.15) scaleY(0.8);
+  }
+
+  /* Se estira y despega */
+  25% {
+    transform: translateY(2px) scaleX(0.85) scaleY(1.2);
+  }
+
+  /* Punto más alto */
+  55% {
+    transform: translateY(-8px) scaleX(0.9) scaleY(1.15);
+  }
+
+  /* Preparándose para caer */
+  75% {
+    transform: translateY(-4px) scaleX(1.05) scaleY(0.95);
+  }
+
+  /* Aterrizaje */
+  90% {
+    transform: translateY(1px) scaleX(1.2) scaleY(0.75);
+  }
+
+  /* Recupera su forma */
+  100% {
+    transform: translateY(0) scaleX(1) scaleY(1);
+  }
+}
+
+/* Option 1 */
+/* @keyframes jump {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  25% {
+    transform: translateY(2px) scale(1.08, 0.92);
+  }
+
+  60% {
+    transform: translateY(-7px) scale(0.97, 1.03);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+} */
+
+/* @keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+
+  20% {
+    transform: translateY(2px) scale(1.05, 0.95);
+  }
+
+  45% {
+    transform: translateY(-8px) scale(0.98, 1.02);
+  }
+
+  65% {
+    transform: translateY(-6px) scale(0.98, 1.02);
+  }
+
+  85% {
+    transform: translateY(1px) scale(1.04, 0.96);
+  }
+} */
+/* 
+@keyframes idle {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-4px) scale(0.98, 1.02);
+  }
+} */
+
+/* @keyframes jump {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  15% {
+    transform: translateY(2px) scale(1.08, 0.92);
+  }
+
+  35% {
+    transform: translateY(-8px) scale(0.97, 1.03);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(0.97, 1.03);
+  }
+
+  75% {
+    transform: translateY(0) scale(1.05, 0.95);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+} */
+
+/* @keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  15% {
+    transform: translateY(2px) scale(1.08, 0.92);
+  }
+
+  40% {
+    transform: translateY(-7px) scale(0.96, 1.04);
+  }
+
+  60% {
+    transform: translateY(-7px) scale(0.96, 1.04);
+  }
+
+  80% {
+    transform: translateY(1px) scale(1.06, 0.94);
+  }
+} */

@@ -83,6 +83,8 @@ export interface IlevelData {
   boxes: ILevelBoxes;
 }
 
+export type TGameOver = (nextLevel: boolean) => void;
+
 export type Direction = keyof typeof EDirections;
 
 export type DirectionCallback = (direction: Direction | null) => void;

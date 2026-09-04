@@ -1,6 +1,11 @@
 import "./styles.css";
 import { classNames } from "../../../../utils/classNames";
-import { addClass, addStyle, inlineStyles } from "../../../../utils/helpers";
+import {
+  addClass,
+  addStyle,
+  inlineStyles,
+  removeClass,
+} from "../../../../utils/helpers";
 import {
   ETypeUnicorn,
   GAME_OBJECT_CLASS,
@@ -16,6 +21,7 @@ import type {
 const CLASS_NAMES = {
   UNICORN: "unicorn",
   SINK: "sink",
+  MOVE: "move",
 };
 
 class Unicorn extends GameObject {
@@ -42,11 +48,16 @@ class Unicorn extends GameObject {
   }
 
   move(position: ICoordinate) {
+    addClass(this.el, CLASS_NAMES.MOVE);
     addStyle(this.el, { left: `${position.x}px`, top: `${position.y}px` });
   }
 
   sink() {
     addClass(this.el, CLASS_NAMES.SINK);
+  }
+
+  idle() {
+    removeClass(this.el, CLASS_NAMES.MOVE);
   }
 }
 

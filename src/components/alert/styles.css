@@ -32,10 +32,9 @@ modal.show {
 
 .mc {
   border-radius: 5px;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 80%;
   background: #fff;
-  overflow: hidden;
 }
 
 .mc .txt {

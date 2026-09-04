@@ -4,17 +4,9 @@ export const BASE_WIDTH = 412;
 export const BASE_HEIGHT = 732;
 export const GAME_LABEL_ATTRIBUTE = "level";
 export const CUSTOM_ROUTER_EVENT_NAME = "navigate";
-export const SPEED_MOVEMENT = 400;
+export const SPEED_MOVEMENT = 300;
 
 export const GAME_OBJECT_CLASS = "game-object";
-
-// export const BASE_NAME_ID = {
-//   BOX: "box",
-//   BRICK: "brick",
-//   RAINBOW: "rainbow",
-//   TILE: "tile",
-//   UNICORN: "unicorn",
-// };
 
 export const SHORT_CLASS_NAMES: Record<string, string> = {
   DF: "df",
@@ -71,15 +63,6 @@ export enum ETypeBox {
   NORMAL = "NORMAL",
   SOLID = "SOLID",
 }
-
-// export enum ETiles {
-//   BRICK,
-//   COIN,
-//   SPIKE,
-//   KEYS,
-//   GATES,
-//   BOXES,
-// }
 
 export enum EDirections {
   up = "up",

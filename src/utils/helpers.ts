@@ -43,7 +43,7 @@ export const addClass = (target: HTMLElement | null, className = "") => {
   }
 };
 
-export const removeClass = (target: HTMLElement, className = "") => {
+export const removeClass = (target: HTMLElement | null, className = "") => {
   if (target) {
     className
       .split(" ")
