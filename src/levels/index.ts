@@ -1,19 +1,16 @@
 import { ETypeBox, ETypeUnicorn, LOCAL_STORAGE_KEY } from "../utils/constants";
 import { getValueFromCache, savePropierties } from "../utils/storage";
+import { guid } from "../utils/guid";
 import { isValidNumber, numberStringToNumber } from "../utils/helpers";
 import LEVELS from "./LEVELS";
 import type {
   IBox,
   IGameObject,
-  // ILevelCollider,
   IlevelData,
   IElementPosition,
-  // ILevelGameObjectsMove,
-  // ILevelItemMove,
   ILevelUnicorns,
   ILevelBoxes,
 } from "../interfaces";
-import { guid } from "../utils/guid";
 
 const getGameObjectByType = (data: number[][], type = 0) =>
   data.filter((v) => v[0] === type);
@@ -37,36 +34,12 @@ const dataBox = (data: (string | number)[][], size: number): IBox[] =>
     type: +v[5] === 1 ? ETypeBox.NORMAL : ETypeBox.SOLID,
   }));
 
-// const getMatrix = (data: (string | number)[][]): ILevelMatrix[] => {
-//   return data.map(([id, type, col, row, ...rest]) => [
-//     String(id),
-//     +type,
-//     +row,
-//     +col,
-//     rest.join(","),
-//   ]);
-// };
-
 const getPositionElement = (data: (string | number)[][]): IElementPosition =>
   data
     .map(([id, , col, row]) => ({
       [`${row}-${col}`]: String(id),
     }))
     .reduce((a, s) => ({ ...a, ...s }), {});
-
-// const getColliders = (data: (string | number)[][]): ILevelCollider =>
-//   data
-//     .map(([id, type, col, row]) => ({
-//       [`${row}-${col}`]: [id, type] as ILevelMatrix,
-//     }))
-//     .reduce((a, s) => ({ ...a, ...s }), {});
-
-// const getObjectsMove = (data: (string | number)[][]): ILevelGameObjectsMove =>
-//   data
-//     .map(([id, type, col, row, ...rest]) => ({
-//       [id]: [type, row, col, rest.join(",")] as ILevelItemMove,
-//     }))
-//     .reduce((a, s) => ({ ...a, ...s }), {});
 
 /**
  * Dado el nivel se convierte a un Objeto para ser renderizado en el cliente...
@@ -121,7 +94,6 @@ const convertLevel = (index = 0): IlevelData => {
     },
     floor: getPositionElement(baseTile),
     walls: getPositionElement(baseBrick),
-    // objectsMove,
     rainbows: getPositionElement(baseRainbow),
     unicorns,
     boxes,
