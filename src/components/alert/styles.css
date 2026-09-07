@@ -1,8 +1,9 @@
 modal {
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: 100;
+  background: rgb(0 0 0 / 50%);
+  width: 300%;
+  height: 300%;
 }
 
 modal.hide {
@@ -15,6 +16,12 @@ modal.show {
   visibility: visible;
 }
 
+.ms.co {
+  width: var(--bw);
+  height: var(--bh);
+  position: relative;
+}
+
 .ms,
 .mw {
   left: 0;
@@ -22,19 +29,15 @@ modal.show {
   top: 0;
 }
 
-.ms {
-  background: rgb(0 0 0 / 50%);
-}
-
 .mw {
   z-index: 1;
 }
 
 .mc {
-  border-radius: 5px;
-  /* overflow: hidden; */
-  width: 80%;
   background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 80%;
 }
 
 .mc .txt {
@@ -46,12 +49,13 @@ modal.show {
 .mb button {
   width: 100%;
   border: none;
-  height: 50px;
-  background: #fc7169;
+  height: 60px;
+  background: #fd72ab;
   cursor: pointer;
   color: #fff;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 1.3rem;
 }
 
 .mb button:nth-child(2) {

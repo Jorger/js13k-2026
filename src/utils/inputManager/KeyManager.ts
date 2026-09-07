@@ -1,6 +1,6 @@
-import { $off, $on } from "./helpers";
-import { DirectionCallback, type Direction } from "../interfaces";
-import { EVENT_TYPE, KEY_DIRECTION } from "./constants";
+import { $off, $on } from "../helpers";
+import { DirectionCallback, type Direction } from "../../interfaces";
+import { EVENT_TYPE, KEY_DIRECTION } from "../constants";
 
 class KeyManager {
   private direction: Direction | null = null;
@@ -23,13 +23,9 @@ class KeyManager {
   mount() {
     $on(document, EVENT_TYPE.KEY_DOWN, this.handleKeyDown);
     $on(document, EVENT_TYPE.KEY_UP, this.handleKeyUp);
-    // document.addEventListener("keydown", this.handleKeyDown);
-    // document.addEventListener("keyup", this.handleKeyUp);
   }
 
   unmount() {
-    // document.removeEventListener("keydown", this.handleKeyDown);
-    // document.removeEventListener("keyup", this.handleKeyUp);
     $off(document, EVENT_TYPE.KEY_DOWN, this.handleKeyDown);
     $off(document, EVENT_TYPE.KEY_UP, this.handleKeyUp);
 

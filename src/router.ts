@@ -1,3 +1,4 @@
+import { createElement } from "./utils/helpers";
 import {
   BASE_HEIGHT,
   BASE_WIDTH,
@@ -13,8 +14,7 @@ class AppRouter extends HTMLElement {
   private currentPage: HTMLElement | null = null;
 
   connectedCallback() {
-    // Página por defecto
-    this.navigate(ROUTER_PAGE.GAME);
+    this.navigate(ROUTER_PAGE.LOBBY);
 
     window.addEventListener(CUSTOM_ROUTER_EVENT_NAME, (e: Event) => {
       const customEvent = e as CustomEvent<NavigateDetail>;
@@ -24,7 +24,7 @@ class AppRouter extends HTMLElement {
     document.addEventListener(
       EVENT_TYPE.CONTEXT_MENU,
       (e) => e.preventDefault(),
-      false
+      false,
     );
 
     window.addEventListener(EVENT_TYPE.RESIZE, () => this.applyZoom());
@@ -36,7 +36,6 @@ class AppRouter extends HTMLElement {
     const zoomY = window.innerHeight / BASE_HEIGHT;
     const zoom = Math.min(zoomX, zoomY);
 
-    // Apply zoom directly
     this.style.zoom = `${zoom}`;
   }
 
@@ -49,19 +48,19 @@ class AppRouter extends HTMLElement {
 
     switch (page) {
       case ROUTER_PAGE.LOBBY:
-        element = document.createElement(ROUTER_COMPONENT.LOBBY);
+        element = createElement(ROUTER_COMPONENT.LOBBY);
         break;
       case ROUTER_PAGE.LEVEL_SELECT:
-        element = document.createElement(ROUTER_COMPONENT.LEVEL_SELECT);
+        element = createElement(ROUTER_COMPONENT.LEVEL_SELECT);
         break;
       case ROUTER_PAGE.GAME:
-        element = document.createElement(ROUTER_COMPONENT.GAME);
+        element = createElement(ROUTER_COMPONENT.GAME);
         if (params.level) {
           element.setAttribute(GAME_LABEL_ATTRIBUTE, String(params.level));
         }
         break;
       default:
-        element = document.createElement(ROUTER_COMPONENT.LOBBY);
+        element = createElement(ROUTER_COMPONENT.LOBBY);
     }
 
     this.appendChild(element);

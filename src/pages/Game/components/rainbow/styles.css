@@ -2,14 +2,44 @@
   font-size: calc(var(--size) * 0.7);
   text-shadow: 6px 7px 7px #050404a1;
   isolation: isolate;
-  /* animation: rainbow-select var(--sp) ease-out forwards; */
+}
+
+.rainbow::before {
+  content: "🌈";
+  position: absolute;
+  font-size: calc(var(--size) * 0.6);
+  animation:
+    float 2s ease-in-out infinite,
+    glow 2s ease-in-out infinite;
 }
 
 .rainbow.pick-up {
-  animation: rainbow-select var(--sp) ease-out forwards;
+  animation: select var(--sp) ease-out forwards;
 }
 
-@keyframes rainbow-select {
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-4px) rotate(4deg);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 transparent);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+  }
+}
+
+@keyframes select {
   0% {
     transform: scale(1) rotate(0deg);
     filter: brightness(1);

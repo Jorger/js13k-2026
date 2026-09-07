@@ -60,15 +60,11 @@ class LevelSelect extends HTMLElement {
     });
 
     // Botón "Back" para regresar al lobby
-    const backButton = new ButtonGame(
-      "back",
-      "Back",
-      () => navigate(),
-      "left: 175px;top: 71px;"
-    );
+    const backButton = new ButtonGame("back", "Back", () => navigate());
 
     // Inserta el botón en el wrapper y activa su evento
     wrapper.insertAdjacentHTML("beforeend", backButton.render());
+
     backButton.event();
   }
 
@@ -85,7 +81,7 @@ class LevelSelect extends HTMLElement {
             this.selectedLevel === index ? "active" : ""
           }" ${index > this.completedLevel ? "disabled" : ""}>${
             index + 1
-          }</button>`
+          }</button>`,
       )
       .join("");
   }

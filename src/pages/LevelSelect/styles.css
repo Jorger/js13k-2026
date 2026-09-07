@@ -1,23 +1,23 @@
 .pag-s {
   align-content: flex-end;
   flex-flow: wrap;
-  gap: 10px;
+  gap: 20px;
   margin-top: 60px;
-  row-gap: 15px;
 }
 
 .pag-s .button {
-  font-size: 20px;
-  height: 20px;
+  font-size: 30px;
+  height: 70px;
   padding: 20px;
   text-shadow: none;
-  width: 20px;
+  width: 70px;
 }
 
 .pag-s .button:disabled {
-  opacity: 0.5;
+  color: #785ec6;
+  background: white;
 }
 
 .pag-s .button.active {
-  background: #ff5722;
+  opacity: 0.8;
 }

@@ -5,8 +5,10 @@ import "./pages/Lobby/Lobby";
 import "./router";
 import "./utils/cssVariables";
 import { ROUTER_COMPONENT } from "./utils/constants";
+import Alert from "./components/alert";
 
-document.body.innerHTML = `<${ROUTER_COMPONENT.ROUTER} class='df jc ai'></${ROUTER_COMPONENT.ROUTER}>`;
+document.body.innerHTML = `<${ROUTER_COMPONENT.ROUTER} class='df jc ai'>${Alert.render()}</${ROUTER_COMPONENT.ROUTER}>`;
+Alert.events();
 
 // if ("serviceWorker" in navigator) {
 //   navigator.serviceWorker

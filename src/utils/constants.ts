@@ -89,17 +89,17 @@ export const KEY_DIRECTION: Record<string, Direction> = {
   KeyS: "down",
 };
 
-// export enum ESounds {
-//   CLICK,
-//   SWIPE,
-//   COIN,
-//   EXPLODE,
-//   KEY,
-//   OPEN,
-//   DESTROY,
-//   SUCESS,
-//   GAME_OVER,
-// }
+export enum ESounds {
+  CLICK,
+  SWIPE,
+  COIN,
+  EXPLODE,
+  KEY,
+  OPEN,
+  DESTROY,
+  SUCESS,
+  GAME_OVER,
+}
 
 export const INPUT_DIRECTION: TInputDirection = {
   up: { x: 0, y: -1 },

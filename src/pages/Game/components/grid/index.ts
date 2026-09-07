@@ -1,7 +1,8 @@
+import "./styles.css";
 import { Box, Brick, Rainbow, Tile, Unicorn } from "../index";
+import { cloneDeep, inlineStyles, setHtml } from "../../../../utils/helpers";
 import { getElement } from "../../../../utils/getElement";
 import { guid } from "../../../../utils/guid";
-import { cloneDeep, inlineStyles, setHtml } from "../../../../utils/helpers";
 import {
   EDirections,
   ETypeBox,
@@ -10,7 +11,7 @@ import {
   SPEED_MOVEMENT,
 } from "../../../../utils/constants";
 import Component from "../component";
-import InputManager from "../../../../utils/InputManager";
+import InputManager from "../../../../utils/inputManager";
 import type {
   Direction,
   IBoxGame,
@@ -70,6 +71,11 @@ class Grid extends Component {
    * Para hacer referencia el elemento del intervalo...
    */
   timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  /**
+   * Para el intervalo el game over...
+   */
+  timeoutGameOver: ReturnType<typeof setTimeout> | null = null;
 
   /**
    * Para saber si el juego ha acabado...
@@ -137,16 +143,23 @@ class Grid extends Component {
       this.unicornCanMove(key, direction),
     );
 
-    this.moveElements();
+    this.moveElements(direction);
   }
 
-  moveElements() {
+  moveElements(direction: Direction) {
     if (!this.elementsMove.length) return;
 
     const { size } = this.levelData!.level.config;
 
     this.elementsMove.forEach(({ id, type, coordinate }) => {
       const element = type === 1 ? this.unicorns![id] : this.boxes![id];
+
+      if (
+        type === 1 &&
+        (direction === EDirections.left || direction === EDirections.right)
+      ) {
+        this.unicorns![id].obj.direction = direction;
+      }
 
       element.obj.move({
         x: coordinate.x * size,
@@ -628,7 +641,7 @@ class Grid extends Component {
       (id) => this.unicorns![id].isVisible,
     );
 
-    setTimeout(() => {
+    this.timeoutGameOver = setTimeout(() => {
       this.handleNextLevel(completeRainbows && allUnicornsOnFloor);
     }, SPEED_MOVEMENT);
   }
@@ -645,7 +658,7 @@ class Grid extends Component {
 
   render() {
     const { size, rows, cols } = this.levelData!.level.config;
-    return /*html*/ `<div id="${this.id}" ${inlineStyles({ width: `${size * cols}px`, height: `${size * rows}px`, position: "relative" })}></div>`;
+    return /*html*/ `<div class="grid" id="${this.id}" ${inlineStyles({ width: `${size * cols}px`, height: `${size * rows}px` })}></div>`;
   }
 
   /**
@@ -719,6 +732,10 @@ class Grid extends Component {
 
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
+    }
+
+    if (this.timeoutGameOver) {
+      clearTimeout(this.timeoutGameOver);
     }
   }
 }

@@ -29,7 +29,7 @@ class Rainbow extends GameObject {
       top: `${this.position.y}px`,
     };
 
-    return /*html*/ `<div id="${this.idDom}" class="${classNames(SHORT_CLASS_NAMES.DF, SHORT_CLASS_NAMES.JC, SHORT_CLASS_NAMES.AI, GAME_OBJECT_CLASS, CLASS_NAMES.RAINBOW)}"${inlineStyles(styles)}>🌈</div>`;
+    return /*html*/ `<div id="${this.idDom}" class="${classNames(SHORT_CLASS_NAMES.DF, SHORT_CLASS_NAMES.JC, SHORT_CLASS_NAMES.AI, GAME_OBJECT_CLASS, CLASS_NAMES.RAINBOW)}"${inlineStyles(styles)}></div>`;
   }
 
   pickUp() {

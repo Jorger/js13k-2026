@@ -1,7 +1,7 @@
-var version = "roni-v3";
+var version = "unicorns-rainbows-v1";
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(version).then((cache) => cache.addAll(["index.html"]))
+    caches.open(version).then((cache) => cache.addAll(["index.html"])),
   );
 });
 
@@ -22,12 +22,12 @@ self.addEventListener("activate", (event) => {
             if (cacheName !== version) {
               return caches.delete(cacheName);
             }
-          })
-        )
+          }),
+        ),
       )
       .then(function () {
         return self.clients.claim();
-      })
+      }),
   );
 });
 
@@ -54,8 +54,8 @@ self.addEventListener("fetch", (event) => {
               }
             }
             return response;
-          })
-        )
-    )
+          }),
+        ),
+    ),
   );
 });
