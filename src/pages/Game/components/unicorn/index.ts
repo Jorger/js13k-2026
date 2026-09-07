@@ -7,12 +7,14 @@ import {
   removeClass,
 } from "../../../../utils/helpers";
 import {
+  EDirections,
   ETypeUnicorn,
   GAME_OBJECT_CLASS,
   SHORT_CLASS_NAMES,
 } from "../../../../utils/constants";
 import GameObject from "../base-component";
 import type {
+  Direction,
   ICoordinate,
   IUnicorn,
   TTypeUnicorn,
@@ -26,8 +28,15 @@ const CLASS_NAMES = {
 
 class Unicorn extends GameObject {
   type: TTypeUnicorn;
+  direction: Direction = EDirections.left;
 
-  constructor({ id, position, size, type = ETypeUnicorn.NORMAL }: IUnicorn) {
+  constructor({
+    id,
+    position,
+    size,
+    type = ETypeUnicorn.NORMAL,
+    direction = EDirections.left,
+  }: IUnicorn) {
     super({
       id,
       position,
@@ -35,6 +44,7 @@ class Unicorn extends GameObject {
     });
 
     this.type = type;
+    this.direction = direction;
   }
 
   render() {
@@ -48,6 +58,10 @@ class Unicorn extends GameObject {
   }
 
   move(position: ICoordinate) {
+    this.direction === EDirections.right
+      ? addClass(this.el, EDirections.right)
+      : removeClass(this.el, EDirections.right);
+
     addClass(this.el, CLASS_NAMES.MOVE);
     addStyle(this.el, { left: `${position.x}px`, top: `${position.y}px` });
   }

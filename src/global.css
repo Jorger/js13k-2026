@@ -11,23 +11,18 @@ html {
 
 body,
 html {
+  /* background: #7f6dc7; */
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   background: #06b8ff;
+  /* background: linear-gradient(180deg, #a99ae8 0%, #9687dc 55%, #c7c0ef 100%); */
   color: white;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  height: 100%;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
   position: fixed;
   user-select: none;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .df {
@@ -61,15 +56,15 @@ app-router {
 }
 
 .button {
-  background: #246ff9;
+  background: #fd72ab;
   color: white;
   padding: 20px 30px;
   font-size: 35px;
   font-weight: bold;
-  border: 5px solid #000101;
+  border-radius: 5px;
+  border: none;
   text-shadow: 1px 5px 1px #00000063;
   cursor: pointer;
-  /* Ponerlo en una variable de css */
   box-shadow:
     rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
@@ -77,17 +72,16 @@ app-router {
 }
 
 .pag {
-  /* --sg: 25px; */
   flex-direction: column;
 }
 
-.pag-c {
+/* .pag-c {
   width: calc(var(--bw) - 100px);
   height: calc(var(--bh) - 100px);
   background: #503c6f;
   box-shadow: inset -12px 9px 3.2px rgba(0, 0, 0, 0.15);
   flex-direction: column;
-}
+} */
 
 .game-object {
   height: var(--size);
@@ -98,21 +92,10 @@ app-router {
 app-game,
 app-lobby,
 app-level-select {
-  /* background-color: blue; */
-  outline: 1px solid white;
-
+  /* outline: 1px solid white; */
   display: flex;
   width: 100%;
   height: 100%;
-}
-
-.debug {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.625);
-  height: 50px;
-  pointer-events: none;
 }
 
 @keyframes fall {

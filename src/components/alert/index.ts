@@ -73,13 +73,13 @@ const Alert: AlertProps = {
     }
   },
   render: () =>
-    `<modal class="hide wi he"><div class="ms wi he"></div><div class="df mw wi he jc ai"><div class=mc><div class="df ai wh jc txt"></div><div class="df mb wi he jc"><button id=btn1></button><button id=btn2></button></div></div></div></modal>`,
+    `<modal class="hide df jc ai"><div class="ms co"><div class="ms wi he"></div><div class="df mw wi he jc ai"><div class=mc><div class="df ai wh jc txt"></div><div class="df mb wi he jc"><button id=btn1></button><button id=btn2></button></div></div></div></div></modal>`,
   events() {
     $$("modal button").forEach((btn) =>
       $on(btn as HTMLButtonElement, EVENT_TYPE.CLICK, (e) => {
         this.hide();
         this.callback && this.callback(e.target.id === "btn1");
-      })
+      }),
     );
   },
 };

@@ -1,5 +1,5 @@
-import { Direction, DirectionCallback } from "../interfaces";
-import { isTouchDevice } from "./helpers";
+import { Direction, DirectionCallback } from "../../interfaces";
+import { isTouchDevice } from "../helpers";
 import KeyManager from "./KeyManager";
 import SwipeManager from "./SwipeManager";
 

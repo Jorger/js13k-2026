@@ -1,6 +1,6 @@
-import { $off, $on } from "./helpers";
-import { EDirections, EVENT_TYPE } from "./constants";
-import type { Direction, DirectionCallback } from "../interfaces";
+import { $off, $on } from "../helpers";
+import { EDirections, EVENT_TYPE } from "../constants";
+import type { Direction, DirectionCallback } from "../../interfaces";
 
 const MIN_SWIPE_DISTANCE = 30;
 
@@ -32,25 +32,9 @@ class SwipeManager {
   }
 
   mount() {
-    // document.addEventListener("mousedown", this.handleMouseDown);
-    // document.addEventListener("mousemove", this.handleMouseMove);
-    // document.addEventListener("mouseup", this.handleMouseUp);
-
     $on(document, EVENT_TYPE.MOUSE_DOWN, this.handleMouseDown);
     $on(document, EVENT_TYPE.MOUSE_MOVE, this.handleMouseMove);
     $on(document, EVENT_TYPE.MOUSE_UP, this.handleMouseUp);
-
-    // document.addEventListener("touchstart", this.handleTouchStart, {
-    //   passive: true,
-    // });
-
-    // document.addEventListener("touchmove", this.handleTouchMove, {
-    //   passive: true,
-    // });
-
-    // document.addEventListener("touchend", this.handleTouchEnd, {
-    //   passive: true,
-    // });
 
     $on(document, EVENT_TYPE.TOUCH_START, this.handleTouchStart, {
       passive: true,
@@ -73,14 +57,6 @@ class SwipeManager {
     $off(document, EVENT_TYPE.TOUCH_START, this.handleTouchStart);
     $off(document, EVENT_TYPE.TOUCH_MOVE, this.handleTouchMove);
     $off(document, EVENT_TYPE.TOUCH_END, this.handleTouchEnd);
-
-    // document.removeEventListener("mousedown", this.handleMouseDown);
-    // document.removeEventListener("mousemove", this.handleMouseMove);
-    // document.removeEventListener("mouseup", this.handleMouseUp);
-
-    // document.removeEventListener("touchstart", this.handleTouchStart);
-    // document.removeEventListener("touchmove", this.handleTouchMove);
-    // document.removeEventListener("touchend", this.handleTouchEnd);
 
     this.reset();
   }

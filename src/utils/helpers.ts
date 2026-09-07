@@ -1,5 +1,6 @@
 export const $ = document.querySelector.bind(document);
 export const $$ = document.querySelectorAll.bind(document);
+export const createElement = document.createElement.bind(document);
 
 export const qs = (query = "", target: Document | HTMLElement = document) => {
   return target.querySelector(query);
@@ -51,8 +52,8 @@ export const removeClass = (target: HTMLElement | null, className = "") => {
   }
 };
 
-export const hasClass = (target: HTMLElement, className = "") =>
-  target.classList.contains(className);
+// export const hasClass = (target: HTMLElement | null, className = "") =>
+//   target?.classList.contains(className);
 
 export const setCssVariable = (
   target: HTMLElement,
@@ -78,8 +79,8 @@ export const inlineStyles = (styles: Record<string, string>) =>
         .join(";")}'`
     : "";
 
-export const delay = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+// export const delay = (ms: number) =>
+//   new Promise((resolve) => setTimeout(resolve, ms));
 
 export const isValidJson = (json = "") => {
   try {
@@ -90,38 +91,14 @@ export const isValidJson = (json = "") => {
   }
 };
 
-export function isValidNumber(value: number | string): boolean {
-  return (
-    (typeof value === "number" || typeof value === "string") &&
-    !isNaN(value as any)
-  );
-}
+export const isValidNumber = (value: number | string): boolean =>
+  (typeof value === "number" || typeof value === "string") &&
+  !isNaN(value as any);
 
-export function getNumber(value: string): number {
-  return isValidNumber(value) ? +value : 0;
-}
+export const getNumber = (value: string): number =>
+  isValidNumber(value) ? +value : 0;
 
-export function numberStringToNumber(values: string[]): number[] {
-  return values.map(getNumber);
-}
+export const numberStringToNumber = (values: string[]): number[] =>
+  values.map(getNumber);
 
-export const shareLink = (data: ShareData) => {
-  if ("share" in navigator) {
-    navigator.share(data);
-  } else {
-    window.open(
-      `https://x.com/share?url=${encodeURIComponent(data.url || "")}`,
-      "_blank",
-    );
-  }
-};
-
-export function isFirefoxBrowser(): boolean {
-  if (typeof navigator === "undefined") return false;
-  const ua = navigator.userAgent.toLowerCase();
-  return ua.includes("firefox") && !ua.includes("seamonkey");
-}
-
-export const isTouchDevice = (): boolean => {
-  return navigator.maxTouchPoints > 0;
-};
+export const isTouchDevice = (): boolean => navigator.maxTouchPoints > 0;

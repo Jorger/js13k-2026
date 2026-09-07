@@ -1,13 +1,14 @@
+import { getLevel, getTotalLevels, saveLevelCache } from "../../levels";
+import { Grid } from "./components";
+import { navigate } from "../../utils/navigate";
+import { setHtml } from "../../utils/helpers";
 import {
   BASE_PAGE_CLASS,
   GAME_LABEL_ATTRIBUTE,
   ROUTER_COMPONENT,
 } from "../../utils/constants";
-import { getLevel, getTotalLevels, saveLevelCache } from "../../levels";
-import { Grid } from "./components";
-import { setHtml } from "../../utils/helpers";
 import Alert from "../../components/alert";
-import { navigate } from "../../utils/navigate";
+import ButtonGame from "../../components/button";
 
 class Game extends HTMLElement {
   static get observedAttributes() {
@@ -16,11 +17,17 @@ class Game extends HTMLElement {
 
   private grid: Grid | null = null;
   private currentLevel: number = 0;
+  private backButton: ButtonGame | null = null;
 
   connectedCallback() {
     // Obtener el atributo "level" definido en el HTML (ej. <app-game level="1">)
     const attrLevel = this.getAttribute(GAME_LABEL_ATTRIBUTE);
     this.currentLevel = attrLevel ? parseInt(attrLevel, 10) : 0;
+    this.backButton = new ButtonGame("back", "Back", () => {
+      this.grid?.unmount();
+
+      navigate();
+    });
 
     this.render();
   }
@@ -28,7 +35,6 @@ class Game extends HTMLElement {
   private render() {
     this.grid?.unmount();
 
-    // 7
     this.grid = new Grid(
       getLevel(this.currentLevel),
       this.nextLevel.bind(this),
@@ -36,11 +42,11 @@ class Game extends HTMLElement {
 
     setHtml(
       this,
-      /*html*/ `<div class="${BASE_PAGE_CLASS}">${this.grid}</div>${Alert.render()}`,
+      /*html*/ `<div class="${BASE_PAGE_CLASS}">${this.backButton!.render()}${this.grid}</div>`,
     );
 
     this.grid.mount();
-    Alert.events();
+    this.backButton!.event();
   }
 
   private nextLevel(isNextLevel = false) {
@@ -62,7 +68,8 @@ class Game extends HTMLElement {
           }
 
           const nextLevel = this.currentLevel + 1;
-          if (nextLevel <= getTotalLevels()) {
+
+          if (nextLevel < getTotalLevels()) {
             saveLevelCache(this.currentLevel);
             this.currentLevel++;
             this.render();
@@ -70,6 +77,7 @@ class Game extends HTMLElement {
           }
         }
 
+        this.grid?.unmount();
         navigate();
       },
     });

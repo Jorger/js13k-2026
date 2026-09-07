@@ -53,7 +53,6 @@ const convertLevel = (index = 0): IlevelData => {
    * rainbows: row,col|row,col (3)
    * uniconrs: row,col|row,col (4)
    */
-  // "4,4,70;0,0,2|0,1,2|0,1,3|0,2,1|0,2,2|0,2,3|0,3,0|0,3,1|0,3,2|1,3,0|2,1,2,2,1|3,0,2|4,3,1|4,3,2"
   const [config, data] = level.split(";");
   const [rows, cols, size] = numberStringToNumber(config.split(","));
   const dataLevel = data.split("|").map((v) => v.split(",").map(Number));

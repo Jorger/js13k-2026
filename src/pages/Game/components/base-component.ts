@@ -2,8 +2,6 @@ import { getElement } from "../../../utils/getElement";
 import { ICoordinate } from "../../../interfaces";
 import Component from "./component";
 
-const BASE_NAME_ID = "element";
-
 abstract class GameObject extends Component {
   element: HTMLElement | null;
   size: number;
