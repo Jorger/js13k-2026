@@ -78,32 +78,36 @@ export const OPOSITE_DIRECTION: Record<EDirections, EDirections> = {
   [EDirections.right]: EDirections.left,
 };
 
-export const KEY_DIRECTION: Record<string, Direction> = {
-  ArrowLeft: "left",
-  ArrowUp: "up",
-  ArrowRight: "right",
-  ArrowDown: "down",
-  KeyA: "left",
-  KeyW: "up",
-  KeyD: "right",
-  KeyS: "down",
-};
+export const KEY_DIRECTION = new Map<string, Direction>([
+  ["ArrowLeft", "left"],
+  ["ArrowUp", "up"],
+  ["ArrowRight", "right"],
+  ["ArrowDown", "down"],
+  ["KeyA", "left"],
+  ["KeyW", "up"],
+  ["KeyD", "right"],
+  ["KeyS", "down"],
+]);
 
 export enum ESounds {
   CLICK,
-  SWIPE,
+  MOVE,
   COIN,
-  EXPLODE,
-  KEY,
-  OPEN,
+  // GAME_OVER,
   DESTROY,
-  SUCESS,
-  GAME_OVER,
+  MOVE_BOX,
+  SINK,
 }
 
-export const INPUT_DIRECTION: TInputDirection = {
+// export const INPUT_DIRECTION: TInputDirection = {
+//   up: { x: 0, y: -1 },
+//   down: { x: 0, y: 1 },
+//   left: { x: -1, y: 0 },
+//   right: { x: 1, y: 0 },
+// };
+export const INPUT_DIRECTION = {
   up: { x: 0, y: -1 },
   down: { x: 0, y: 1 },
   left: { x: -1, y: 0 },
   right: { x: 1, y: 0 },
-};
+} as const;

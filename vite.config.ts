@@ -18,11 +18,7 @@ export default defineConfig(({ command, mode }) => ({
         drop_debugger: true,
         booleans_as_integers: true,
       },
-      mangle: {
-        properties: {
-          // regex: /^_/, // enable if you want to mangle private-like props
-        },
-      },
+      mangle: true,
     },
     rollupOptions: {
       output: {

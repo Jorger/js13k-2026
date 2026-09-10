@@ -1,8 +1,10 @@
-import { createElement } from "./utils/helpers";
+import { $on, createElement } from "./utils/helpers";
+import { PlaySound } from "./utils/sounds";
 import {
   BASE_HEIGHT,
   BASE_WIDTH,
   CUSTOM_ROUTER_EVENT_NAME,
+  ESounds,
   EVENT_TYPE,
   GAME_LABEL_ATTRIBUTE,
   ROUTER_COMPONENT,
@@ -29,6 +31,7 @@ class AppRouter extends HTMLElement {
 
     window.addEventListener(EVENT_TYPE.RESIZE, () => this.applyZoom());
     this.applyZoom();
+    this.initButtonSound();
   }
 
   applyZoom() {
@@ -37,6 +40,16 @@ class AppRouter extends HTMLElement {
     const zoom = Math.min(zoomX, zoomY);
 
     this.style.zoom = `${zoom}`;
+  }
+
+  initButtonSound(): void {
+    $on(document, EVENT_TYPE.CLICK, (event) => {
+      const button = (event.target as HTMLElement).closest(".button");
+
+      if (button) {
+        PlaySound(ESounds.CLICK);
+      }
+    });
   }
 
   private navigate(page: string, params: Record<string, any> = {}) {

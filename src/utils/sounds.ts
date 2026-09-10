@@ -41,7 +41,7 @@ zzfx = // play sound
     J = 0,
     f = 0,
     x,
-    h
+    h,
   ) => {
     e = R * e + 9;
     m *= R;
@@ -54,7 +54,7 @@ zzfx = // play sound
     z *= R;
     l = (R * l) | 0;
     for (h = (e + m + r + t + c) | 0; a < h; k[a++] = f)
-      ++J % ((100 * F) | 0) ||
+      (++J % ((100 * F) | 0) ||
         ((f = q
           ? 1 < q
             ? 2 < q
@@ -73,12 +73,12 @@ zzfx = // play sound
           (a < e
             ? a / e
             : a < e + m
-            ? 1 - ((a - e) / m) * (1 - w)
-            : a < e + m + r
-            ? w
-            : a < h - c
-            ? ((h - a - c) / t) * w
-            : 0)),
+              ? 1 - ((a - e) / m) * (1 - w)
+              : a < e + m + r
+                ? w
+                : a < h - c
+                  ? ((h - a - c) / t) * w
+                  : 0)),
         (f = c
           ? f / 2 +
             (c > a ? 0 : ((a < h - c ? 1 : (h - a) / c) * k[(a - c) | 0]) / 2)
@@ -86,7 +86,7 @@ zzfx = // play sound
         (x = (b += u += y) * M.cos(A * H++)),
         (g += x - x * E * (1 - ((1e9 * (M.sin(a) + 1)) % 2))),
         n && ++n > z && ((b += v), (C += v), (n = 0)),
-        !l || ++I % l || ((b = C), (u = G), (n ||= 1));
+        !l || ++I % l || ((b = C), (u = G), (n ||= 1)));
     p = zzfxX.createBuffer(1, h, R);
     p.getChannelData(0).set(k);
     b = zzfxX.createBufferSource();
@@ -100,25 +100,20 @@ zzfxX = new AudioContext();
 let soundsEnabled = getValueFromCache(LOCAL_STORAGE_KEY.SOUNDS, true);
 
 // CLICK
-// SWIPE
+// MOVE
 // COIN
-// EXPLODE
-// KEY
-// OPEN
-// DESTROY
-// SUCESS
 // GAME_OVER
+// DESTROY
+// MOVE_BOX
+// SINK
 
 const SOUNDS = [
   [, , 537, 0.02, 0.02, 0.22, 1, 1.59, -6.98, 4.97],
-  [, , 150, 0.05, , 0.05, , 1.3, , , , , , 3],
-  [, , 1675, , 0.06, 0.24, 1, 1.82, , , 837, 0.06],
-  [,,448,.01,.1,.3,3,.39,-0.5,,,,,,.2,.1,.08],
-  [, , 539, 0, 0.04, 0.29, 1, 1.92, , , 567, 0.02, 0.02, , , , 0.04],
+  [, , 224, 0.02, 0.02, 0.08, 1, 1.7, -13.9, , , , , , 6.7],
   [, , 20, 0.04, , 0.6, , 1.31, , , -990, 0.06, 0.17, , , 0.04, 0.07],
   [, , 418, 0, 0.02, 0.2, 4, 1.15, -8.5, , , , , 0.7, , 0.1],
-  [, , 80, 0.3, 0.4, 0.7, 2, 0.1, -0.73, 3.42, -430, 0.09, 0.17, , , , 0.19],
-  [, , 925, 0.04, 0.3, 0.6, 1, 0.3, , 6.27, -184, 0.09, 0.17],
+  [, , 150, 0.05, , 0.05, , 1.3, , , , , , 3],
+  [, , 129, 0.01, , 0.15, , , , , , , , 5],
 ];
 
 export const PlaySound = (sound: ESounds) => {
