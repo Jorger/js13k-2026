@@ -3,8 +3,10 @@ import { Box, Brick, Rainbow, Tile, Unicorn } from "../index";
 import { cloneDeep, inlineStyles, setHtml } from "../../../../utils/helpers";
 import { getElement } from "../../../../utils/getElement";
 import { guid } from "../../../../utils/guid";
+import { PlaySound } from "../../../../utils/sounds";
 import {
   EDirections,
+  ESounds,
   ETypeBox,
   INPUT_DIRECTION,
   OPOSITE_DIRECTION,
@@ -150,9 +152,14 @@ class Grid extends Component {
     if (!this.elementsMove.length) return;
 
     const { size } = this.levelData!.level.config;
+    let moveBox = false;
 
     this.elementsMove.forEach(({ id, type, coordinate }) => {
       const element = type === 1 ? this.unicorns![id] : this.boxes![id];
+
+      if (!moveBox && type === 2) {
+        moveBox = true;
+      }
 
       if (
         type === 1 &&
@@ -173,6 +180,13 @@ class Grid extends Component {
       this.validateEndMovement.bind(this),
       SPEED_MOVEMENT,
     );
+
+    // Sonido por defecto para el movimiento dle unicornio(s)...
+    PlaySound(ESounds.MOVE);
+
+    if (moveBox) {
+      PlaySound(ESounds.MOVE_BOX);
+    }
   }
 
   validateEndMovement() {
@@ -217,6 +231,9 @@ class Grid extends Component {
         this.collectedRainbows++;
 
         typePickRainbow = type;
+
+        // Sonido que indica que tomo el arcoiris...
+        PlaySound(ESounds.COIN);
       }
     });
 
@@ -642,7 +659,11 @@ class Grid extends Component {
     );
 
     this.timeoutGameOver = setTimeout(() => {
-      this.handleNextLevel(completeRainbows && allUnicornsOnFloor);
+      const isNextLevel = completeRainbows && allUnicornsOnFloor;
+      // if (!isNextLevel) {
+      //   PlaySound(ESounds.GAME_OVER);
+      // }
+      this.handleNextLevel(isNextLevel);
     }, SPEED_MOVEMENT);
   }
 

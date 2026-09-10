@@ -20,7 +20,7 @@ class Brick extends GameObject {
 
   render() {
     const styles = {
-      "--size": `${this.size}px`,
+      ["--size"]: `${this.size}px`,
       left: `${this.position.x}px`,
       top: `${this.position.y}px`,
     };

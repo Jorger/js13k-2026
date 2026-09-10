@@ -52,9 +52,6 @@ export const removeClass = (target: HTMLElement | null, className = "") => {
   }
 };
 
-// export const hasClass = (target: HTMLElement | null, className = "") =>
-//   target?.classList.contains(className);
-
 export const setCssVariable = (
   target: HTMLElement,
   variable = "",
@@ -102,3 +99,14 @@ export const numberStringToNumber = (values: string[]): number[] =>
   values.map(getNumber);
 
 export const isTouchDevice = (): boolean => navigator.maxTouchPoints > 0;
+
+export const shareLink = (data: ShareData) => {
+  if ("share" in navigator) {
+    navigator.share(data);
+  } else {
+    window.open(
+      `https://x.com/share?url=${encodeURIComponent(data.url || "")}`,
+      "_blank",
+    );
+  }
+};

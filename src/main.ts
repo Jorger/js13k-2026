@@ -10,9 +10,6 @@ import Alert from "./components/alert";
 document.body.innerHTML = `<${ROUTER_COMPONENT.ROUTER} class='df jc ai'>${Alert.render()}</${ROUTER_COMPONENT.ROUTER}>`;
 Alert.events();
 
-// if ("serviceWorker" in navigator) {
-//   navigator.serviceWorker
-//     .register("./sw.js")
-//     .then(() => console.log("Service worker registered"))
-//     .catch((err) => console.error("SW registration failed", err));
-// }
+if ("serviceWorker" in navigator) {
+  void navigator.serviceWorker.register("./sw.js");
+}

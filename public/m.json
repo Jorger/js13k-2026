@@ -1,6 +1,6 @@
 {
-  "short_name": "Unicorns & Rainbows",
-  "name": "Unicorns & Rainbows",
+  "short_name": "Unicorn Slide",
+  "name": "Unicorn Slide",
   "icons": [{ "src": "icon.png", "type": "image/png", "sizes": "512x512" }],
   "start_url": "./index.html",
   "display": "standalone",

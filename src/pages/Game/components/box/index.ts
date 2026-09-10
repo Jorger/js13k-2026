@@ -1,13 +1,15 @@
 import "./styles.css";
 import { addClass, addStyle, inlineStyles } from "../../../../utils/helpers";
-import GameObject from "../base-component";
-import type { IBox, ICoordinate, TTypeBox } from "../../../../interfaces";
 import { classNames } from "../../../../utils/classNames";
+import { PlaySound } from "../../../../utils/sounds";
 import {
   GAME_OBJECT_CLASS,
   ETypeBox,
   SHORT_CLASS_NAMES,
+  ESounds,
 } from "../../../../utils/constants";
+import GameObject from "../base-component";
+import type { IBox, ICoordinate, TTypeBox } from "../../../../interfaces";
 
 const CLASS_NAMES = {
   BOX: "box",
@@ -32,7 +34,7 @@ class Box extends GameObject {
 
   render() {
     const styles = {
-      "--size": `${this.size}px`,
+      ["--size"]: `${this.size}px`,
       left: `${this.position.x}px`,
       top: `${this.position.y}px`,
     };
@@ -46,10 +48,12 @@ class Box extends GameObject {
 
   sink() {
     addClass(this.el, CLASS_NAMES.SINK);
+    PlaySound(ESounds.SINK);
   }
 
   explode() {
     addClass(this.el, CLASS_NAMES.EXPLODE);
+    PlaySound(ESounds.DESTROY);
   }
 }
 

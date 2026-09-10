@@ -34,7 +34,7 @@ class KeyManager {
   }
 
   private handleKeyDown(event: KeyboardEvent) {
-    const direction = KEY_DIRECTION[event.code];
+    const direction = KEY_DIRECTION.get(event.code);
 
     if (!direction || event.repeat) {
       return;

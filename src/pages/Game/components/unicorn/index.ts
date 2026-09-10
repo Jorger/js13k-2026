@@ -1,5 +1,6 @@
 import "./styles.css";
 import { classNames } from "../../../../utils/classNames";
+import { PlaySound } from "../../../../utils/sounds";
 import {
   addClass,
   addStyle,
@@ -8,6 +9,7 @@ import {
 } from "../../../../utils/helpers";
 import {
   EDirections,
+  ESounds,
   ETypeUnicorn,
   GAME_OBJECT_CLASS,
   SHORT_CLASS_NAMES,
@@ -49,7 +51,7 @@ class Unicorn extends GameObject {
 
   render() {
     const styles = {
-      "--size": `${this.size}px`,
+      ["--size"]: `${this.size}px`,
       left: `${this.position.x}px`,
       top: `${this.position.y}px`,
     };
@@ -68,6 +70,7 @@ class Unicorn extends GameObject {
 
   sink() {
     addClass(this.el, CLASS_NAMES.SINK);
+    PlaySound(ESounds.SINK);
   }
 
   idle() {
